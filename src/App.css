@@ -1,0 +1,70 @@
+h1{
+  text-align: center;
+}
+
+
+.todoContainer{
+min-height: 200px;
+  height: auto;
+  width: 500px;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+ padding-bottom: 20px;
+
+}
+
+
+
+.inputRow{
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  flex-grow:0;
+}
+
+.addBtn{
+  margin-left: 10px;
+  padding: 6px
+}
+
+.newTask{
+  position: relative;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  margin: 5px;
+  width: 360px;
+}
+
+.taskSection{
+
+  
+  margin-top: 5px;
+}
+
+
+.editIcon{
+  position: absolute;
+  left: 320px;
+ top:6px
+  
+}
+
+.trashIcon{
+  position: absolute;
+  left: 340px;
+ top:6px
+  
+}
+
+.trashIcon:hover, .editIcon:hover{
+  cursor: pointer;
+}
