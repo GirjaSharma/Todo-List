@@ -21,7 +21,7 @@ localStorage.setItem('todoList', JSON.stringify(taskList));
 
   }, [taskList]);
 
-  const handleAddBtn=(e)=>{
+  const handleAddorUpdateBtn=(e)=>{
     e.preventDefault();
 
     if(!task.trim()){
@@ -47,7 +47,6 @@ const handleRemoveBtn =(id)=>{
   setTaskList(taskList => taskList.filter(task => task.id !== id))
   
 }
-  // if the input/task is empty or no items passed in the input field, donot let the user to add items
 
     const handleEdit=(id)=>{
       setIsEditing(true)
@@ -57,11 +56,9 @@ const handleRemoveBtn =(id)=>{
     console.log(currentTask.text)
      setTask(currentTask.text)
 
-    //  on click edit icon, it should fill the input with current selectd task
-    // change the add text to update
-    // hide the taskList below or extract the task being edited and show only rest while editing 
+   
     // show modal before deleting a task, are you sure you want to delete with delete and cancel button and cross to close modal
-    // also add cancel button with update incase user doesn't want to update and cancel editing
+    // also add cancel button with update incase user doesn't want to update and cancel
 
     }
     
@@ -70,10 +67,11 @@ const handleRemoveBtn =(id)=>{
   return (
     <div className="todoContainer">
        <h1>My ToDo List</h1>
-       <InputBox task={task} onAddTask={handleAddBtn} setTask={setTask} isEditing={isEditing}/>
+       <InputBox task={task} onAddTask={handleAddorUpdateBtn} setTask={setTask} isEditing={isEditing}/>
        {taskList.length >0 && <TodoList taskList={taskList} 
        onDelete={handleRemoveBtn}
         onEdit={handleEdit}
+        isEditing={isEditing}
        />}
     </div>
     

@@ -26,11 +26,31 @@ min-height: 200px;
   justify-content: center;
   width: 400px;
   flex-grow:0;
+
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.addBtn{
-  margin-left: 10px;
+.addBtn, .cancelBtn{
+  
   padding: 6px
+}
+.primary{
+  background-color: black;
+  color: white
+}
+
+.buttonsStyle{
+  display: flex;
+  gap: 10px;
+}
+
+.editButtonStyle{
+  display: flex;
+  gap:10px;
+  margin-top: 10px;
+  flex-basis: 100%;
+  justify-content: center;
 }
 
 .newTask{
