@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css';
 import {InputBox} from './components/InputBox'
 import { TodoList } from './components/TodoList';
@@ -7,21 +7,21 @@ import {generateId} from './utils/id';
 
 const App=()=> {
   const [task, setTask] = useState('');
-  const retreivedData = JSON.parse(localStorage.getItem('todoList')) || [];
-  const [taskList, setTaskList] =useState(retreivedData);
+ 
+  const [taskList, setTaskList] =useState(()=>{
+    const retreivedData = localStorage.getItem('todoList');
+    return retreivedData ? JSON.parse(retreivedData) : [];
+  });
   const [isEditing, setIsEditing] =useState(false);
   const [editId, setEditId] = useState(null);
+
   
-  console.log(retreivedData)
 
   useEffect(() => {
-console.log(taskList)
 localStorage.setItem('todoList', JSON.stringify(taskList));
-
-
   }, [taskList]);
 
-  const handleAddorUpdateBtn=(e)=>{
+  const handleAddBtn=(e)=>{
     e.preventDefault();
 
     if(!task.trim()){
@@ -36,29 +36,56 @@ localStorage.setItem('todoList', JSON.stringify(taskList));
         completed: false
     }
     setTaskList(prevTasks => [...prevTasks, newTask])
-    console.log("tasksss", taskList)
     setTask('')
 
     }
 
 
-const handleRemoveBtn =(id)=>{
-  console.log("----", id)
+const handleRemoveIcon =(id)=>{
   setTaskList(taskList => taskList.filter(task => task.id !== id))
   
 }
 
-    const handleEdit=(id)=>{
+    const handleEditIcon=(id)=>{
       setIsEditing(true)
       setEditId(id);
      const currentTask = taskList.find(task => task.id === id)
+     currentTask && setTask(currentTask.text)
+    }
 
-    console.log(currentTask.text)
-     setTask(currentTask.text)
+    const handleUpdateBtn=()=>{
+      const updatedArr = taskList.map((t) => {
+        if(t.id=== editId){
+          return {
+              ...t,
+          text: task,
+        }
+      } 
+        return t
+      });
+      setTaskList(updatedArr);
+      setTask('')
+        setIsEditing(false);
+        setEditId(null)
+    }
 
-   
-    // show modal before deleting a task, are you sure you want to delete with delete and cancel button and cross to close modal
-    // also add cancel button with update incase user doesn't want to update and cancel
+    const handleCancelBtn=()=>{
+      setIsEditing(false)
+    }
+
+    const handleCheckBoxChange =(id)=>{
+       const checkedList =taskList.map(task => {
+        if(task.id === id){
+          return {
+            ...task,
+            completed: !task.completed
+          }
+        }return task
+       
+       })
+       setTaskList(checkedList)
+    
+     
 
     }
     
@@ -67,15 +94,18 @@ const handleRemoveBtn =(id)=>{
   return (
     <div className="todoContainer">
        <h1>My ToDo List</h1>
-       <InputBox task={task} onAddTask={handleAddorUpdateBtn} setTask={setTask} isEditing={isEditing}/>
+       <InputBox task={task} onAddTask={handleAddBtn} setTask={setTask} isEditing={isEditing} onCancelTask={handleCancelBtn} onUpdateTask={handleUpdateBtn} 
+
+       />
+
+
        {taskList.length >0 && <TodoList taskList={taskList} 
-       onDelete={handleRemoveBtn}
-        onEdit={handleEdit}
+       onDelete={handleRemoveIcon}
+        onEdit={handleEditIcon}
+        onCheckboxChange={handleCheckBoxChange}
         isEditing={isEditing}
        />}
     </div>
-    
-    
   )
 }
 
