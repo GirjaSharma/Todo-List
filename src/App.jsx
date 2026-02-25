@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import './App.css';
 import {InputBox} from './components/InputBox'
 import { TodoList } from './components/TodoList';
@@ -7,19 +7,22 @@ import {generateId} from './utils/id';
 
 const App=()=> {
   const [task, setTask] = useState('');
- 
+ const [editId, setEditId] = useState(null);
   const [taskList, setTaskList] =useState(()=>{
     const retreivedData = localStorage.getItem('todoList');
     return retreivedData ? JSON.parse(retreivedData) : [];
   });
-  const [isEditing, setIsEditing] =useState(false);
-  const [editId, setEditId] = useState(null);
+  
+  
+  const isEditing = editId !== null;
+  console.log(isEditing)
 
   
 
   useEffect(() => {
 localStorage.setItem('todoList', JSON.stringify(taskList));
   }, [taskList]);
+
 
   const handleAddBtn=(e)=>{
     e.preventDefault();
@@ -47,7 +50,6 @@ const handleRemoveIcon =(id)=>{
 }
 
     const handleEditIcon=(id)=>{
-      setIsEditing(true)
       setEditId(id);
      const currentTask = taskList.find(task => task.id === id)
      currentTask && setTask(currentTask.text)
@@ -65,12 +67,11 @@ const handleRemoveIcon =(id)=>{
       });
       setTaskList(updatedArr);
       setTask('')
-        setIsEditing(false);
         setEditId(null)
     }
 
     const handleCancelBtn=()=>{
-      setIsEditing(false)
+      setEditId(null)
     }
 
     const handleCheckBoxChange =(id)=>{
@@ -84,9 +85,6 @@ const handleRemoveIcon =(id)=>{
        
        })
        setTaskList(checkedList)
-    
-     
-
     }
     
 
