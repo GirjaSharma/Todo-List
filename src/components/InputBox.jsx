@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-export const InputBox =({task, onAddTask, setTask, isEditing, onCancelTask, onUpdateTask})=>{
+export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask, onUpdateTask})=>{
 
     const inputRef = useRef(null)
     useEffect(() =>{
@@ -47,7 +47,7 @@ export const InputBox =({task, onAddTask, setTask, isEditing, onCancelTask, onUp
         style={{width: "300px", height: "25px"}} 
         type="text" 
         value={task} 
-        onChange={e => setTask(e.target.value)}
+        onChange={e=> onTaskChange(e.target.value)}
         onKeyDown={handleKeyDown}
         />
 
