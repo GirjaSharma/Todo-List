@@ -72,6 +72,7 @@ min-height: 200px;
 
 
 .editIcon{
+  all: unset;
   position: absolute;
   left: 320px;
  top:6px
@@ -79,6 +80,7 @@ min-height: 200px;
 }
 
 .trashIcon{
+  all: unset;
   position: absolute;
   left: 340px;
  top:6px

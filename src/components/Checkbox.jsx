@@ -1,15 +1,16 @@
-export const Checkbox=({isChecked, checkHandler, children})=>{
+export const Checkbox=({checked, onChange, children,id})=>{
 return (
-    <div>
-    <label>
+    <>
+    
         <input
         type='checkbox'
-        checked={isChecked}
-        onChange={checkHandler}
-       
+        checked={checked}
+        onChange={onChange}
+        id={id}
         />
+        <label htmlFor={id}>
         {children}
         </label>
-    </div>
+    </>
 )
 }
