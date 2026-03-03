@@ -1,0 +1,14 @@
+.newTask{
+    position: relative;
+    background-color: #f6f2fd;
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 30px;
+    padding:5px;
+    margin: 5px;
+    width: 360px;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+  }
+  

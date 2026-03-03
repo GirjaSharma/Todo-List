@@ -1,0 +1,26 @@
+.taskContainer{
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 10px;
+}
+
+.editIcon{
+    all: unset;
+    position: absolute;
+    left: 320px;
+   top:6px
+    
+  }
+  
+  .trashIcon{
+    all: unset;
+    position: absolute;
+    left: 340px;
+   top:6px
+    
+  }
+  
+  .trashIcon:hover, .editIcon:hover{
+    cursor: pointer;
+  }

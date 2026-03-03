@@ -1,6 +1,6 @@
 
-import {TodoItem} from './TodoItem';
-
+import {TodoItem} from '../TodoItem/TodoItem';
+import './TodoList.css' 
 
 
 export const TodoList=({taskList, onEdit, onDelete, isEditing, onCheckboxChange,

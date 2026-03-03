@@ -1,9 +1,10 @@
-import { Checkbox } from "./Checkbox";
+import { Checkbox } from "../Checkbox/Checkbox";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import './TodoItem.css' 
 
 export const TodoItem=({onChange,task, onEdit, onDelete})=>{
 return (
-    <>
+    <div className="taskContainer">
         <Checkbox 
         checked={task.completed}
         onChange={()=>onChange(task.id)}
@@ -16,6 +17,6 @@ return (
         </div>
             
             
-        </>
+        </div>
 )
 }

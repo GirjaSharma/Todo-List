@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
+import './InputBox.css'
+
 export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask, onUpdateTask})=>{
 
     const inputRef = useRef(null)

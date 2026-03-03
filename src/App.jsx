@@ -1,10 +1,11 @@
 import { useState, useEffect, useReducer } from 'react'
 import './App.css';
-import {InputBox} from './components/InputBox'
-import { TodoList } from './components/TodoList';
+import {InputBox} from './components/InputBox/InputBox'
+import { TodoList } from './components/TodoList/TodoList';
 import {generateId} from './utils/id';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
-import {ACTION_TYPES} from './constants/actionTypes'
+import {ACTION_TYPES} from './constants/actionTypes';
+import {Navbar} from './components/Navbar/Navbar';
 
 
 const App=()=> {
@@ -33,6 +34,8 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
 
   const handleAddBtn=(e)=>{
     e.preventDefault();
+    const creationTime = Date.now();
+
 
     if(!state.task.trim())return ;
 
@@ -42,7 +45,9 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
       payload: {
         id:generateId(),
         text: state.task.trim(),
-        completed: false
+        completed: false,
+        createdAt: creationTime
+
       }
     })
 
@@ -80,7 +85,8 @@ const handleRemoveIcon =(id)=>{
 
   return (
     <div className="todoContainer">
-      <h1>My ToDo List</h1>
+      <Navbar/>
+      <h3>Tasks</h3>
         <InputBox task={state.task} onAddTask={handleAddBtn}
         onTaskChange={handleTaskChange} 
         isEditing={isEditing} 

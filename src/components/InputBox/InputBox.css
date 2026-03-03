@@ -1,0 +1,30 @@
+.inputRow{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    flex-grow:0;
+  
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .addBtn, .cancelBtn{
+    
+    padding: 6px
+  }
+
+  .buttonsStyle{
+    display: flex;
+    gap: 10px;
+  }
+  
+  .editButtonStyle{
+    display: flex;
+    gap:10px;
+    margin-top: 10px;
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  

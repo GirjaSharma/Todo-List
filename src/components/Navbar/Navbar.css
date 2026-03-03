@@ -1,0 +1,45 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--primary);
+    height: 56px;
+}
+
+.navbar_navigation {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between;
+    color: #fff !important;
+}
+
+.navbar_navigation h1 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: 2rem;
+}
+
+.navbar_brand {
+    margin-left: 1rem;
+}
+
+.navbar_brand h1 {
+    color: white;
+    text-decoration: none;
+}
+
+.spacer {
+    flex: 0.98;
+}
+
+.navbar-toggler-icon i {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-toggler-icon i:hover,
+.navbar-toggler-icon i:active {
+    color: darkblue;
+}

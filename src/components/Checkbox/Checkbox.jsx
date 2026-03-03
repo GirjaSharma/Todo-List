@@ -1,4 +1,7 @@
+import './Checkbox.css';
+
 export const Checkbox=({checked, onChange, children,id})=>{
+
 return (
     <>
     
@@ -8,7 +11,7 @@ return (
         onChange={onChange}
         id={id}
         />
-        <label htmlFor={id} className={checked ? "completed" : ''}>
+        <label htmlFor={id} className={checked ? 'completed label' : 'label'}>
         {children}
         </label>
     </>

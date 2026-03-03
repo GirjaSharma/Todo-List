@@ -13,7 +13,8 @@ switch(action.type){
         const newTask={
             text: action.payload.text,
             id: action.payload.id,
-            completed: action.payload.completed
+            completed: action.payload.completed,
+            createdAt: action.payload.createdAt
         }
         return {
             ...state,
