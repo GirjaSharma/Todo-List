@@ -34,6 +34,9 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
   const handleAddBtn=(e)=>{
     e.preventDefault();
 
+    if(!state.task.trim())return ;
+
+
     dispatch({
       type: ACTION_TYPES.ADD_TASK,
       payload: {

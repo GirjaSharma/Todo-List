@@ -6,9 +6,9 @@ h1{
 .todoContainer{
 min-height: 200px;
   height: auto;
-  width: 500px;
-  border: 2px solid white;
-  background-color: white;
+  width: var(--container-width);
+  border: 2px solid var(--container-bg);
+  background-color: var(--container-bg);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  width: auto;
   flex-grow:0;
 
   flex-wrap: wrap;
@@ -36,8 +36,8 @@ min-height: 200px;
   padding: 6px
 }
 .primary{
-  background-color: black;
-  color: white
+  background-color: var(--primary);
+  color: var(--secondary)
 }
 
 .buttonsStyle{
@@ -55,11 +55,11 @@ min-height: 200px;
 
 .newTask{
   position: relative;
-  background-color: black;
-  color: white;
+  background-color: var(--secondary);
+  color: var(--primary);
   display: flex;
   flex-direction: column;
-  height: 30px;
+  height: auto;
   margin: 5px;
   width: 360px;
 }
@@ -89,4 +89,8 @@ min-height: 200px;
 
 .trashIcon:hover, .editIcon:hover{
   cursor: pointer;
+}
+
+.completed{
+  text-decoration: line-through;
 }

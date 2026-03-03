@@ -8,7 +8,7 @@ return (
         onChange={onChange}
         id={id}
         />
-        <label htmlFor={id}>
+        <label htmlFor={id} className={checked ? "completed" : ''}>
         {children}
         </label>
     </>
