@@ -5,6 +5,7 @@ import './TodoList.css'
 
 export const TodoList=({taskList, onEdit, onDelete, isEditing, onCheckboxChange,
 })=>{
+    console.log("todolist----")
     return(
         <>
         {isEditing=== true ? '' : taskList.length>0 && taskList.map(task => (

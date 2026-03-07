@@ -1,6 +1,7 @@
 import "./Navbar.css";
 
 export const Navbar = () => {
+  console.log("Navbaar")
   return (
     <header className="navbar fixed-top navbar-expand-sm">
       <nav className="container navbar_navigation">

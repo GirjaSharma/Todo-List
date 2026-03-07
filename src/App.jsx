@@ -1,11 +1,13 @@
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect, useReducer } from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import {InputBox} from './components/InputBox/InputBox'
-import { TodoList } from './components/TodoList/TodoList';
 import {generateId} from './utils/id';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES} from './constants/actionTypes';
 import {Navbar} from './components/Navbar/Navbar';
+import CurrentDate from './Pages/Today/CurrentDate';
+import History from './Pages/History/HistoryPage';
+import SettingsPage from './Pages/Settings/SettingsPage';
 
 
 const App=()=> {
@@ -32,9 +34,10 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
   }, [state.taskList]);
 
 
+
   const handleAddBtn=(e)=>{
     e.preventDefault();
-    const creationTime = Date.now();
+    const creationTime = new Date();
 
 
     if(!state.task.trim())return ;
@@ -46,7 +49,7 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
         id:generateId(),
         text: state.task.trim(),
         completed: false,
-        createdAt: creationTime
+        createdAt: creationTime.toLocaleString()
 
       }
     })
@@ -86,21 +89,24 @@ const handleRemoveIcon =(id)=>{
   return (
     <div className="todoContainer">
       <Navbar/>
-      <h3>Tasks</h3>
-        <InputBox task={state.task} onAddTask={handleAddBtn}
+
+<Routes>
+  <Route path='/' element={<CurrentDate 
+  task={state.task} onAddTask={handleAddBtn} 
         onTaskChange={handleTaskChange} 
         isEditing={isEditing} 
         onCancelTask={handleCancelBtn} 
-        onUpdateTask={handleUpdateBtn} 
-/>
-
-
-       {state?.taskList?.length > 0 && <TodoList taskList={state.taskList} 
-       onDelete={handleRemoveIcon}
+        onUpdateTask={handleUpdateBtn}  
+        taskList={state.taskList}
+        onDelete={handleRemoveIcon}
         onEdit={handleEditIcon}
-        onCheckboxChange={handleCheckBoxChange}
-        isEditing={isEditing}
-       />}
+        onCheckboxChange={handleCheckBoxChange}/>}/>
+  <Route path='/history' element={<History/>}/>
+  <Route path='/settings' element={<SettingsPage/>}/>
+  <Route path='*' element={<div>Item not found</div>}  />
+</Routes>
+        
+     
     </div>
   )
 }

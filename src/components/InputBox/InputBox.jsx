@@ -39,7 +39,7 @@ export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask,
         handleFocus()
 
       }
-
+console.log("------inputbox")
 
     return (
 
