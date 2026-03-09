@@ -1,7 +1,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import {generateId} from './utils/id';
+import {generateId, currentDate} from './utils/utils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES} from './constants/actionTypes';
 import {Navbar} from './components/Navbar/Navbar';
@@ -37,9 +37,6 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
 
   const handleAddBtn=(e)=>{
     e.preventDefault();
-    const creationTime = new Date();
-
-
     if(!state.task.trim())return ;
 
 
@@ -49,7 +46,7 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
         id:generateId(),
         text: state.task.trim(),
         completed: false,
-        createdAt: creationTime.toLocaleString()
+        createdAt: currentDate().toLocaleTimeString()
 
       }
     })
@@ -87,27 +84,27 @@ const handleRemoveIcon =(id)=>{
 
 
   return (
-    <div className="todoContainer">
-      <Navbar/>
-
-<Routes>
-  <Route path='/' element={<CurrentDate 
-  task={state.task} onAddTask={handleAddBtn} 
-        onTaskChange={handleTaskChange} 
-        isEditing={isEditing} 
-        onCancelTask={handleCancelBtn} 
-        onUpdateTask={handleUpdateBtn}  
-        taskList={state.taskList}
-        onDelete={handleRemoveIcon}
-        onEdit={handleEditIcon}
-        onCheckboxChange={handleCheckBoxChange}/>}/>
-  <Route path='/history' element={<History/>}/>
-  <Route path='/settings' element={<SettingsPage/>}/>
-  <Route path='*' element={<div>Item not found</div>}  />
-</Routes>
-        
-     
-    </div>
+  <main>
+   <Navbar/>
+   <div className="todoContainer">
+     <Routes>
+       <Route path='/' element={<CurrentDate 
+       task={state.task} onAddTask={handleAddBtn} 
+             onTaskChange={handleTaskChange} 
+             isEditing={isEditing} 
+             onCancelTask={handleCancelBtn} 
+             onUpdateTask={handleUpdateBtn}  
+             taskList={state.taskList}
+             onDelete={handleRemoveIcon}
+             onEdit={handleEditIcon}
+             onCheckboxChange={handleCheckBoxChange}/>}/>
+       <Route path='/history' element={<History/>}/>
+       <Route path='/settings' element={<SettingsPage/>}/>
+       <Route path='*' element={<div>Item not found</div>}  />
+     </Routes>
+         </div>
+  </main>
+   
   )
 }
 

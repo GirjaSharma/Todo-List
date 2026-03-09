@@ -46,7 +46,7 @@ console.log("------inputbox")
         <div className='inputRow'>
         <input aria-label={isEditing? "Edit Task" : "Add a Task" }
         ref={inputRef} 
-        style={{width: "300px", height: "25px"}} 
+        style={{width: "400px", height: "25px"}} 
         type="text" 
         value={task} 
         onChange={e=> onTaskChange(e.target.value)}
