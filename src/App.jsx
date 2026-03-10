@@ -1,7 +1,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import {generateId, currentDate} from './utils/utils';
+import {generateId, getNow, formatTime, getDayKey} from './utils/utils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES} from './constants/actionTypes';
 import {Navbar} from './components/Navbar/Navbar';
@@ -37,6 +37,7 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
 
   const handleAddBtn=(e)=>{
     e.preventDefault();
+    const now=getNow()
     if(!state.task.trim())return ;
 
 
@@ -46,7 +47,7 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
         id:generateId(),
         text: state.task.trim(),
         completed: false,
-        createdAt: currentDate().toLocaleTimeString()
+        createdAt: formatTime(now)
 
       }
     })
@@ -82,6 +83,10 @@ const handleRemoveIcon =(id)=>{
       dispatch({type: ACTION_TYPES.SET_TASK_INPUT, payload: newValue})
     }
 
+    const handleNewDay=()=>{
+      dispatch({type: ACTION_TYPES.START_NEW_DAY})
+
+  }
 
   return (
   <main>
@@ -95,9 +100,11 @@ const handleRemoveIcon =(id)=>{
              onCancelTask={handleCancelBtn} 
              onUpdateTask={handleUpdateBtn}  
              taskList={state.taskList}
+             currentDate={state.currentDate}
              onDelete={handleRemoveIcon}
              onEdit={handleEditIcon}
-             onCheckboxChange={handleCheckBoxChange}/>}/>
+             onCheckboxChange={handleCheckBoxChange}
+             onStartNewDay={handleNewDay}/>}/>
        <Route path='/history' element={<History/>}/>
        <Route path='/settings' element={<SettingsPage/>}/>
        <Route path='*' element={<div>Item not found</div>}  />

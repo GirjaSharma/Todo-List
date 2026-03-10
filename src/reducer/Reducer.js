@@ -1,9 +1,12 @@
 import {ACTION_TYPES} from '../constants/actionTypes'
+import { formatTime, getNow } from '../utils/utils'
 
 export const initial_state={
     task: "",
     taskList:[],
-    editId:null
+    editId:null,
+    currentDate: formatTime(getNow),
+    carryOverUnfinished: true
 }
 
 export function reducer(state, action){
@@ -92,5 +95,34 @@ case ACTION_TYPES.SET_TASK_INPUT:{
         }
     
 }
+
+case ACTION_TYPES.START_NEW_DAY:{
+     const completedTasks =state.taskList.filter(task => task.completed);
+     const inCompleteTasks = state.taskList.filter(task => !task.completed)
+
+     const newDate= new Date();
+
+     const carriedTask = state.carryOverUnfinished ? inCompleteTasks.map(task => (
+        {
+            ...task,
+            date: formatTime(newDate)
+           } 
+     )) :[];
+
+     const historyTasks = state.taskList.filter(task => task.date === state.currentDate)
+
+
+     return {
+        ...state,
+        taskList: [...completedTasks, ...carriedTask],
+        currentDate: formatTime(newDate)
+     }
+}
+
+
+/*1. on start new day, if the cariiedOver flag is true, move the incomplete task to new Day, set their daye to current Date, display header date to current date
+2. move completed task to history, if carriedOver is false , even move them to history and new day should be blank with current date and input box 
+
+*/
 
 }}

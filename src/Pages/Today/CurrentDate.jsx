@@ -2,21 +2,25 @@ import { InputBox } from "../../components/InputBox/InputBox";
 import { TodoList } from "../../components/TodoList/TodoList";
 import { VscAdd } from "react-icons/vsc";
 import './CurrentDate.css';
-import { currentDate } from "../../utils/utils";
+import { getNow, formatHeaderdate } from "../../utils/utils";
 
-const CurrentDate =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange})=>{
-   
 
-    // const handleNextDay=()=>{
+const CurrentDate =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate})=>{
+
+    const todaysTask= taskList.filter(task => {
+        console.log(new Date(task.date).toDateString()===new Date(currentDate).toDateString())
         
-    // }
+        return new Date(task.date).toDateString()===new Date(currentDate).toDateString()})
 
     return (
         <>
         <div className="headings"> 
+            <div>
             <h3>Today's Tasks </h3>
-            <p>{currentDate().toDateString()}</p>
-            <button type="button"><VscAdd aria-hidden="true" /><span className="icon-text">New day</span></button>
+            <p>{formatHeaderdate(getNow())}</p>
+            </div>
+           
+            <button type="button" onClick={onStartNewDay}><VscAdd aria-hidden="true" /><span className="icon-text">New day</span></button>
             </div>
         
         <InputBox task={task} onAddTask={onAddTask} 
@@ -27,7 +31,7 @@ const CurrentDate =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdate
 />
 
 
-       {taskList?.length > 0 && <TodoList taskList={taskList} 
+       {taskList?.length > 0 && <TodoList taskList={todaysTask} 
        onDelete={onDelete}
         onEdit={onEdit}
         onCheckboxChange={onCheckboxChange}
