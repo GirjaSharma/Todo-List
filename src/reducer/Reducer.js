@@ -1,11 +1,11 @@
 import {ACTION_TYPES} from '../constants/actionTypes'
-import { formatTime, getNow } from '../utils/utils'
+import { formatTime, getNow, getDayKey } from '../utils/utils'
 
 export const initial_state={
     task: "",
     taskList:[],
     editId:null,
-    currentDate: formatTime(getNow),
+    currentDate: getDayKey(getNow()),
     carryOverUnfinished: true
 }
 
@@ -17,7 +17,8 @@ switch(action.type){
             text: action.payload.text,
             id: action.payload.id,
             completed: action.payload.completed,
-            createdAt: action.payload.createdAt
+            createdAt: action.payload.createdAt,
+            date: action.payload.date
         }
         return {
             ...state,
@@ -100,22 +101,20 @@ case ACTION_TYPES.START_NEW_DAY:{
      const completedTasks =state.taskList.filter(task => task.completed);
      const inCompleteTasks = state.taskList.filter(task => !task.completed)
 
-     const newDate= new Date();
-
-     const carriedTask = state.carryOverUnfinished ? inCompleteTasks.map(task => (
+     const carriedTask = state.carryOverUnfinished === true ? inCompleteTasks.map(task => (
         {
             ...task,
-            date: formatTime(newDate)
+            date: getDayKey(getNow())
            } 
      )) :[];
 
-     const historyTasks = state.taskList.filter(task => task.date === state.currentDate)
+    //  const historyTasks = state.taskList.filter(task => task.date === state.currentDate)
 
 
      return {
         ...state,
         taskList: [...completedTasks, ...carriedTask],
-        currentDate: formatTime(newDate)
+        currentDate: getDayKey(getNow())
      }
 }
 

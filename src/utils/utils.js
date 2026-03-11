@@ -11,13 +11,14 @@ export const formatHeaderdate=(date)=>{
 
 export const formatTime=(date)=>{
     return date.toLocaleString()
-    //     [],{
-    //     hour:"2-digit",
-    //     minute: "2-digit"
-    // }
 
 }
 
 export const getDayKey=(date= new Date())=>{
 return date.toISOString().split("T")[0]
+}
+
+export const parseDayKey =(dayKey)=>{
+    const [year, month, day] = dayKey.split("-")
+    return new Date(year, month-1, day)
 }

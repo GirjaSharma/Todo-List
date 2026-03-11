@@ -1,0 +1,19 @@
+.message{
+    padding: 10px;
+    margin-bottom: 10px;
+      text-align: center;
+      font-weight: 500;
+}
+
+
+.message-error{
+    color: red;
+}
+
+.message-success{
+  color: green;
+}
+
+.message-default{
+  color: black;
+}

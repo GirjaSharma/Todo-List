@@ -1,9 +1,9 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useSyncExternalStore } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import {generateId, getNow, formatTime, getDayKey} from './utils/utils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
-import {ACTION_TYPES} from './constants/actionTypes';
+import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
 import {Navbar} from './components/Navbar/Navbar';
 import CurrentDate from './Pages/Today/CurrentDate';
 import History from './Pages/History/HistoryPage';
@@ -14,13 +14,30 @@ const App=()=> {
 
   const initialState=(defaultInitialState)=>{
     try{
-      const storedData = localStorage.getItem('todoList');
-      return storedData ? {...defaultInitialState,taskList: Array.isArray(JSON.parse(storedData)) ? JSON.parse(storedData) : defaultInitialState} : defaultInitialState;
+      const storedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      console.log("storedDate", storedData)
+      console.log("localStorage.getItem(STORAGE_KEY)", localStorage.getItem(STORAGE_KEY))
+      return storedData ?
+       {...defaultInitialState,
+        taskList: storedData.taskList || [],
+         currentDate: storedData.currentDate || defaultInitialState.currentDate} 
+         : defaultInitialState;
     }catch(error){
       console.error("Error reading from localStorage");
       return defaultInitialState;
     }
   }
+
+  const [message, setMessage]= useState("");
+  useEffect(() => {
+    if(!message) return;
+
+    const timer =setTimeout(()=>{
+      setMessage("")
+    },5000)
+
+    return ()=> clearTimeout(timer)
+  }, [message])
 
   const [state, dispatch]= useReducer(reducer, defaultInitialState, initialState);
   
@@ -30,8 +47,16 @@ const App=()=> {
   
 
   useEffect(() => {
-localStorage.setItem('todoList', JSON.stringify(state.taskList));
-  }, [state.taskList]);
+localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate}));
+console.log("saving to localStorage", {
+  taskList:state.taskList,
+  currentDate: state.currentDate
+})
+  }, [state.taskList,state.currentDate ]);
+
+  console.log("full state", state);
+  console.log("state.taskList", state.taskList);
+  console.log("isArray", Array.isArray(state.taskList));
 
 
 
@@ -47,7 +72,8 @@ localStorage.setItem('todoList', JSON.stringify(state.taskList));
         id:generateId(),
         text: state.task.trim(),
         completed: false,
-        createdAt: formatTime(now)
+        createdAt: formatTime(now),
+        date: getDayKey(now)
 
       }
     })
@@ -84,7 +110,16 @@ const handleRemoveIcon =(id)=>{
     }
 
     const handleNewDay=()=>{
-      dispatch({type: ACTION_TYPES.START_NEW_DAY})
+      let today = new Date()
+      console.log(getDayKey(today), "getDayKey(today)");
+      console.log(state.currentDate, "state.currentDate")
+      if( getDayKey(today)=== state.currentDate){
+        setMessage("Already viewing today's tasks")
+        return
+      }else{
+        dispatch({type: ACTION_TYPES.START_NEW_DAY})
+      }
+   
 
   }
 
@@ -95,6 +130,7 @@ const handleRemoveIcon =(id)=>{
      <Routes>
        <Route path='/' element={<CurrentDate 
        task={state.task} onAddTask={handleAddBtn} 
+       message={message}
              onTaskChange={handleTaskChange} 
              isEditing={isEditing} 
              onCancelTask={handleCancelBtn} 
