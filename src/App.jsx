@@ -1,6 +1,7 @@
 import { useState, useEffect, useReducer, useSyncExternalStore } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import './styles/global.css';
 import {generateId, getNow, formatTime, getDayKey} from './utils/utils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
@@ -8,6 +9,7 @@ import {Navbar} from './components/Navbar/Navbar';
 import CurrentDate from './Pages/Today/CurrentDate';
 import History from './Pages/History/HistoryPage';
 import SettingsPage from './Pages/Settings/SettingsPage';
+import TodayPage from './Pages/Today/TodayPage'
 
 
 const App=()=> {
@@ -125,25 +127,39 @@ const handleRemoveIcon =(id)=>{
 
   return (
   <main>
-   <Navbar/>
+   {/* <Navbar/> */}
    <div className="todoContainer">
      <Routes>
        <Route path='/' element={<CurrentDate 
-       task={state.task} onAddTask={handleAddBtn} 
-       message={message}
-             onTaskChange={handleTaskChange} 
-             isEditing={isEditing} 
-             onCancelTask={handleCancelBtn} 
-             onUpdateTask={handleUpdateBtn}  
-             taskList={state.taskList}
-             currentDate={state.currentDate}
-             onDelete={handleRemoveIcon}
-             onEdit={handleEditIcon}
-             onCheckboxChange={handleCheckBoxChange}
-             onStartNewDay={handleNewDay}/>}/>
-       <Route path='/history' element={<History/>}/>
-       <Route path='/settings' element={<SettingsPage/>}/>
-       <Route path='*' element={<div>Item not found</div>}  />
+            task={state.task} onAddTask={handleAddBtn} 
+            message={message}
+            onTaskChange={handleTaskChange} 
+            isEditing={isEditing} 
+            onCancelTask={handleCancelBtn} 
+            onUpdateTask={handleUpdateBtn}  
+            taskList={state.taskList}
+            currentDate={state.currentDate}
+            onDelete={handleRemoveIcon}
+            onEdit={handleEditIcon}
+            onCheckboxChange={handleCheckBoxChange}
+            onStartNewDay={handleNewDay}/>}
+            />
+      <Route path='/today' element={<TodayPage
+              task={state.task} onAddTask={handleAddBtn} 
+              message={message}
+                    onTaskChange={handleTaskChange} 
+                    isEditing={isEditing} 
+                    onCancelTask={handleCancelBtn} 
+                    onUpdateTask={handleUpdateBtn}  
+                    taskList={state.taskList}
+                    currentDate={state.currentDate}
+                    onDelete={handleRemoveIcon}
+                    onEdit={handleEditIcon}
+                    onCheckboxChange={handleCheckBoxChange}
+                    onStartNewDay={handleNewDay}/>}/>
+      <Route path='/history' element={<History/>}/>
+      <Route path='/settings' element={<SettingsPage/>}/>
+      <Route path='*' element={<div>Item not found</div>}  />
      </Routes>
          </div>
   </main>

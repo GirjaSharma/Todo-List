@@ -24,7 +24,7 @@ return (
         <div className="buttonContainer"><button className="editIcon" type="button" onClick={()=>onEdit(task.id)}><FaEdit /></button> <button className="trashIcon" type="button" onClick={()=>onDelete(task.id)}><FaTrash  /></button>
         
         </div>
-        <p>created at: {task.createdAt}</p> 
+        {/* <p>created at: {task.createdAt}</p>  */}
             
         </div>
 )

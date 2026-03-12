@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import './InputBox.css'
+import './InputBox.css';
+import { VscAdd } from "react-icons/vsc";
 
 export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask, onUpdateTask})=>{
 
@@ -46,21 +47,23 @@ console.log("------inputbox")
         <div className='inputRow'>
         <input aria-label={isEditing? "Edit Task" : "Add a Task" }
         ref={inputRef} 
-        style={{width: "400px", height: "25px"}} 
         type="text" 
+        placeholder="Add a task"
         value={task} 
         onChange={e=> onTaskChange(e.target.value)}
         onKeyDown={handleKeyDown}
         />
+        
+        <button type="button" className="addBtnIcon" onClick={handlePrimaryClick}><VscAdd aria-hidden="true" /></button>
 
-        <div className={isEditing ? "editButtonStyle" : "buttonsStyle"}>
+        {/* <div className={isEditing ? "editButtonStyle" : "buttonsStyle"}>
 
         <button type="button" className="addBtn primary" onClick={handlePrimaryClick}>{isEditing ? 'Update' : 'Add'}</button>
 
         {isEditing && (
             <button type="button" className="cancelBtn secondary" onClick={handleCancelBtn}>Cancel</button>
         )} 
-        </div>
+        </div> */}
         
         </div>
           

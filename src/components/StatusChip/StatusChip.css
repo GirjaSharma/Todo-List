@@ -1,0 +1,26 @@
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 30px;
+    font-size: 0.75rem;
+    font-weight: 200;
+    border-radius: 0.5rem;
+    margin-right:1rem;
+    /* Make it look like a button but non-clickable */
+    cursor: default; /* Prevents pointer cursor */
+    pointer-events: none; /* Disables click interactions */
+    user-select: none;
+    border: 1px solid transparent;
+  }
+
+
+  .status-chip-carryover {
+    background-color: var(--status-carryover-bg);
+    color: var(--status-carryover-text);
+  }
+  
+  .status-chip-pending {
+    background-color: var(--status-pending-bg);
+    color: var(--status-pending-text);
+  }
+

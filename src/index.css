@@ -8,7 +8,7 @@
       align-items: center;
     background-color:lightgray;
 } */
-
+/* 
 :root {
   --container-width: 100%;
   --container-bg: #eee4ff;
@@ -24,7 +24,7 @@
 
 }
 
-/* Tablet screens and up */
+
 @media (min-width: 600px) {
   :root {
     width: var(--container-width);
@@ -33,7 +33,7 @@
   }
 }
 
-/* Desktop screens and up */
+
 @media (min-width: 1024px) {
   :root {
     width: var(--container-width);
@@ -51,4 +51,4 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text-color);
-}
+} */

@@ -1,11 +1,10 @@
 
-.todoContainer{
+/* .todoContainer{
 min-height: 200px;
-  /* height: auto; */
-  /* min-width: 400px; */
+  
   margin: 0 auto;
   width: min(100%, 700px);
-  /* width: var(--container-width); */
+  
   border: 2px solid var(--container-bg);
   background-color: var(--container-bg);
   border-radius: 8px;
@@ -20,4 +19,11 @@ position:relative
 .primary{
   background-color: var(--primary);
   color: var(--secondary)
+} */
+
+
+.todoContainer{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

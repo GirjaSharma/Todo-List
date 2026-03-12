@@ -7,13 +7,13 @@
 
 
 .message-error{
-    color: red;
+    color: var(--danger-text);
 }
 
 .message-success{
-  color: green;
+  color: var(--success-text);
 }
 
 .message-default{
-  color: black;
+  color: var(--body-text);
 }
