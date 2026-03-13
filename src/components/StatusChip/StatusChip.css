@@ -24,3 +24,8 @@
     color: var(--status-pending-text);
   }
 
+  .status-chip-default {
+    background-color: var(--chip-background);
+    color: var(--chip-text);
+    padding: 4px 10px;
+  }

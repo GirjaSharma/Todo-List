@@ -1,29 +1,51 @@
-/* .taskContainer{
+.taskContainer{
+  width: 100%;
   display: flex; 
   align-items: center; 
-  justify-content: space-between; 
   gap: 10px;
 }
 
+.taskMain{
+  flex:1;
+  min-width: 0;
+}
+
+
+.buttonContainer{
+  flex: 0 0 auto;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  gap: 8px;
+  
+
+}
+
+
+.editIcon, .trashIcon{
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .editIcon{
-    all: unset;
-    position: absolute;
-    left: 320px;
-   top:6px
-    
+   
+    color: var(--chip-text);
+   
+
   }
   
   .trashIcon{
-    all: unset;
-    position: absolute;
-    left: 340px;
-   top:6px
+    color: var(--danger-text) ;
+    
     
   }
   
   .trashIcon:hover, .editIcon:hover{
     cursor: pointer;
-  } */
+  }
 
 
 
