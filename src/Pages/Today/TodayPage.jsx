@@ -5,6 +5,8 @@ import {getDayKey, parseDayKey} from '../../utils/utils'
 import { Message } from "../../components/Message/Message";
 import { StatusChip } from "../../components/StatusChip/StatusChip";
 import './TodayPage.css'
+import { Card } from "../../components/Card/Card";
+import { Navigation } from "../../components/Navigation/Navigation";
 
 const TodayPage =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate, message})=>{
     const todaysTask= taskList.filter(task => (
@@ -12,8 +14,9 @@ const TodayPage =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTa
     )
     )
 return (
-    <main >
-        <div className="header">
+    < >
+    <div className="main-container">
+    <div className="header">
         <div><h3>Today's Tasks </h3>
         <p>{parseDayKey(currentDate).toDateString()}</p></div>
         <button type="button" onClick={onStartNewDay}><VscAdd aria-hidden="true" /><span className="icon-text">New day</span></button>
@@ -40,7 +43,31 @@ return (
         isEditing={isEditing}
        />}
 
-    </main>
+       <div>
+       <p>History</p>
+       <Card className="history">
+        
+       </Card>
+       </div>
+
+       <div className="settings">
+       <p>Settings</p>
+       <Card>
+
+       </Card>
+       </div>
+
+    </div>
+        
+       <div className="footer-navigation">
+        <Navigation/>
+       </div>
+
+     
+
+      
+    
+    </>
 )
 }
 

@@ -1,4 +1,8 @@
+.main-container{
+    overflow-y: auto;
+    flex: 1 1 auto;
 
+}
 .header{
     display: flex;
     justify-content: space-between; 
@@ -30,5 +34,18 @@
 
 .status-chips{
     margin: 1rem 0 1rem 0;
+
+}
+
+.footer-navigation{
+    position: sticky;
+    bottom:0;
+    width: 100%;
+    right: 0;
+    left: 0;
+    height: 100px;
+    background-color: var(--background-color);
+    /* left: 20px; */
+    /* align-items:last baseline; */
 
 }

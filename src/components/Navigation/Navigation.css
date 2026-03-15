@@ -1,0 +1,41 @@
+
+ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    padding: 0;
+    margin: 0;
+}
+
+
+.nav-links{
+    margin-top: 20px;
+z-index: 999;;
+}
+
+.nav-links a {
+  text-decoration: none;       
+  color: var(--placeholder-text)      
+  /* font-weight: bold; */
+}
+
+a.active-link{
+    color: blue;
+    /* text-decoration: underline; */
+  }
+
+
+
+  a.inactive-link{
+    color: var(--placeholder-text) 
+  }
+
+
+.hr{
+    margin-top: 20px;
+    width: 100%;
+    /* height: 1px; */
+    border: 1px solid var(--card-border)
+}

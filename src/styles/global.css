@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+
 :root{
     --background-color: #F6F7FB;
     --outer-frame-navy: #0F1B3D;

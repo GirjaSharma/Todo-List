@@ -16,14 +16,24 @@ const App=()=> {
 
   const initialState=(defaultInitialState)=>{
     try{
-      const storedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      console.log("storedDate", storedData)
-      console.log("localStorage.getItem(STORAGE_KEY)", localStorage.getItem(STORAGE_KEY))
-      return storedData ?
-       {...defaultInitialState,
-        taskList: storedData.taskList || [],
-         currentDate: storedData.currentDate || defaultInitialState.currentDate} 
-         : defaultInitialState;
+      const rawData = localStorage.getItem(STORAGE_KEY);
+      if(!rawData) return defaultInitialState;
+
+
+      const storedData = JSON.parse(rawData);
+
+      return{
+        ...defaultInitialState,
+        taskList: Array.isArray(storedData.taskList) ? storedData.taskList : [],
+        currentDate: storedData.currentDate || defaultInitialState.currentDate,
+      carryOverUnfinished: typeof storedData.carryOverUnfinished === 'boolean' ? storedData.carryOverUnfinished : defaultInitialState.carryOverUnfinished
+      } 
+      
+      //  storedData ?
+      //  {...defaultInitialState,
+      //   taskList: storedData.taskList || [],
+      //    currentDate: storedData.currentDate || defaultInitialState.currentDate} 
+      //    : defaultInitialState;
     }catch(error){
       console.error("Error reading from localStorage");
       return defaultInitialState;
@@ -49,7 +59,7 @@ const App=()=> {
   
 
   useEffect(() => {
-localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate}));
+localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate, carryOverUnfinished: state.carryOverUnfinished}));
 console.log("saving to localStorage", {
   taskList:state.taskList,
   currentDate: state.currentDate
@@ -130,7 +140,7 @@ const handleRemoveIcon =(id)=>{
    {/* <Navbar/> */}
    <div className="todoContainer">
      <Routes>
-       <Route path='/' element={<CurrentDate 
+       {/* <Route path='/' element={<CurrentDate 
             task={state.task} onAddTask={handleAddBtn} 
             message={message}
             onTaskChange={handleTaskChange} 
@@ -143,7 +153,7 @@ const handleRemoveIcon =(id)=>{
             onEdit={handleEditIcon}
             onCheckboxChange={handleCheckBoxChange}
             onStartNewDay={handleNewDay}/>}
-            />
+            /> */}
       <Route path='/today' element={<TodayPage
               task={state.task} onAddTask={handleAddBtn} 
               message={message}

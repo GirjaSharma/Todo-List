@@ -1,0 +1,7 @@
+.card{
+    width: 100%;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    min-height: 12vh;
+    background-color: var(--card-background);
+}

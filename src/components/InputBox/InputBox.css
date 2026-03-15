@@ -47,6 +47,7 @@
     border-radius: 8px;
     background-color: var(--input-background);
     border: 1px solid var(--card-border);
+    text-indent: 10px;
 
    }
 
@@ -60,8 +61,8 @@
     border: none;
     color: var(--soft-accent);
     position: absolute; 
-  right: 0;
-  top: 5px;
+  right: 4px;
+  top: 4px;
   border-radius: 8px;
   height: 80%;
   width: 2.5rem;
