@@ -1,12 +1,10 @@
-import { useState, useEffect, useReducer, useSyncExternalStore } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { useState, useEffect, useReducer } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/global.css';
 import {generateId, getNow, formatTime, getDayKey} from './utils/utils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
-import {Navbar} from './components/Navbar/Navbar';
-import CurrentDate from './Pages/Today/CurrentDate';
 import History from './Pages/History/HistoryPage';
 import SettingsPage from './Pages/Settings/SettingsPage';
 import TodayPage from './Pages/Today/TodayPage'
@@ -56,7 +54,6 @@ const App=()=> {
   
   const isEditing = state.editId !== null;
 
-  
 
   useEffect(() => {
 localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate, carryOverUnfinished: state.carryOverUnfinished}));
@@ -64,7 +61,7 @@ console.log("saving to localStorage", {
   taskList:state.taskList,
   currentDate: state.currentDate
 })
-  }, [state.taskList,state.currentDate ]);
+  }, [state.taskList,state.currentDate, state.carryOverUnfinished]);
 
   console.log("full state", state);
   console.log("state.taskList", state.taskList);
@@ -122,10 +119,9 @@ const handleRemoveIcon =(id)=>{
     }
 
     const handleNewDay=()=>{
-      let today = new Date()
-      console.log(getDayKey(today), "getDayKey(today)");
+      console.log(getDayKey(new Date()), "getDayKey(today)");
       console.log(state.currentDate, "state.currentDate")
-      if( getDayKey(today)=== state.currentDate){
+      if( getDayKey(new Date())=== state.currentDate){
         setMessage("Already viewing today's tasks")
         return
       }else{
@@ -167,7 +163,9 @@ const handleRemoveIcon =(id)=>{
                     onEdit={handleEditIcon}
                     onCheckboxChange={handleCheckBoxChange}
                     onStartNewDay={handleNewDay}/>}/>
-      <Route path='/history' element={<History/>}/>
+      <Route path='/history' element={<History 
+                  taskList={state.taskList}
+                  currentDate={state.currentDate} />}/>
       <Route path='/settings' element={<SettingsPage/>}/>
       <Route path='*' element={<div>Item not found</div>}  />
      </Routes>

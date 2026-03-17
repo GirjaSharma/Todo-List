@@ -1,0 +1,25 @@
+.history-header{
+ 
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;  
+        margin-bottom: 1rem;   
+    
+}
+
+.card-header{
+        width: 80%;
+        display:flex;
+        flex-direction:row;
+        justify-content: space-evenly;
+        margin:10px
+
+
+
+}
+
+.card-hr{
+    margin-top: 10px;
+   
+    border: 1px solid var(--card-border)
+}

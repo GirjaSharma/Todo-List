@@ -6,7 +6,7 @@ const setActiveClass = ({ isActive }) => isActive ? "active-link" : "inactive-li
 export const Navigation =()=>{
     return (
         <>
-            <hr className="hr"/>
+            <hr/>
             <nav aria-label='primary' className='nav-links'>
                <ul >
                 <li > <NavLink className={setActiveClass} to="/today">Today</NavLink></li>

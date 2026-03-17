@@ -1,7 +1,7 @@
 import { InputBox } from "../../components/InputBox/InputBox";
 import { TodoList } from "../../components/TodoList/TodoList";
 import { VscAdd } from "react-icons/vsc";
-import {getDayKey, parseDayKey} from '../../utils/utils'
+import { parseDayKey} from '../../utils/utils'
 import { Message } from "../../components/Message/Message";
 import { StatusChip } from "../../components/StatusChip/StatusChip";
 import './TodayPage.css'

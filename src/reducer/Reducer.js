@@ -6,7 +6,7 @@ export const initial_state={
     taskList:[],
     editId:null,
     currentDate: getDayKey(getNow()),
-    carryOverUnfinished: true
+    carryOverUnfinished: false
 }
 
 export function reducer(state, action){
@@ -108,7 +108,13 @@ case ACTION_TYPES.START_NEW_DAY:{
            } 
      )) :[];
 
-    //  const historyTasks = state.taskList.filter(task => task.date === state.currentDate)
+    //  const historyTasks = state.taskList.filter(task => {
+       
+    //        return task.date !== state.currentDate
+        
+
+    // }) 
+    //  console.log("historyTasks", historyTasks)
 
 
      return {
