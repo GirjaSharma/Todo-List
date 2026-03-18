@@ -28,3 +28,8 @@ position:relative
   flex-direction: column;
   box-sizing: border-box;
 }
+
+
+p, li{
+  color: var(--secondary-text)
+}

@@ -8,7 +8,7 @@ export const Navigation =()=>{
         <>
             <hr/>
             <nav aria-label='primary' className='nav-links'>
-               <ul >
+               <ul className="nav-list">
                 <li > <NavLink className={setActiveClass} to="/today">Today</NavLink></li>
                 <li><NavLink className={setActiveClass} to="/history">History</NavLink></li>
                 <li><NavLink className={setActiveClass} to="/settings">Settings</NavLink></li>

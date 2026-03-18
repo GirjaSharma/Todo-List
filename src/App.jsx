@@ -159,13 +159,16 @@ const handleRemoveIcon =(id)=>{
                     onUpdateTask={handleUpdateBtn}  
                     taskList={state.taskList}
                     currentDate={state.currentDate}
+                    carryOverUnfinished={state.carryOverUnfinished}
                     onDelete={handleRemoveIcon}
                     onEdit={handleEditIcon}
                     onCheckboxChange={handleCheckBoxChange}
                     onStartNewDay={handleNewDay}/>}/>
       <Route path='/history' element={<History 
                   taskList={state.taskList}
-                  currentDate={state.currentDate} />}/>
+                  currentDate={state.currentDate} 
+                  carryOverUnfinished={state.carryOverUnfinished}
+                  />}/>
       <Route path='/settings' element={<SettingsPage/>}/>
       <Route path='*' element={<div>Item not found</div>}  />
      </Routes>

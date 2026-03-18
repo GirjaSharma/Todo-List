@@ -25,3 +25,16 @@ export const parseDayKey =(dayKey)=>{
     const [year, month, day] = dayKey.split("-")
     return new Date(year, month-1, day)
 }
+
+
+export const getOnlyTime=(date)=>{
+    const dateObj = new Date(date);
+
+    const formattedTime = dateObj.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    }).toLowerCase();
+
+    return formattedTime;
+}
