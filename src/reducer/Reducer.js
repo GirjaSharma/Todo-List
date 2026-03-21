@@ -1,5 +1,5 @@
 import {ACTION_TYPES} from '../constants/actionTypes'
-import { formatTime, getNow, getDayKey } from '../utils/utils'
+import { formatTime, getNow, getDayKey } from '../utils/dateUtils'
 
 export const initial_state={
     task: "",
@@ -108,13 +108,6 @@ case ACTION_TYPES.START_NEW_DAY:{
            } 
      )) :[];
 
-    //  const historyTasks = state.taskList.filter(task => {
-       
-    //        return task.date !== state.currentDate
-        
-
-    // }) 
-    //  console.log("historyTasks", historyTasks)
 
 
      return {
@@ -122,6 +115,14 @@ case ACTION_TYPES.START_NEW_DAY:{
         taskList: [...completedTasks, ...carriedTask],
         currentDate: getDayKey(getNow())
      }
+}
+
+case ACTION_TYPES.SET_CARRY_OVER:{
+    // carryOverUnfinished: !state.carryOverUnfinished;
+    return{
+        ...state,
+        carryOverUnfinished: !state.carryOverUnfinished
+    }
 }
 
 

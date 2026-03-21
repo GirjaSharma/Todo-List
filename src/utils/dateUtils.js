@@ -1,8 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
-
-export const generateId = ()=> uuidv4();
-
-
 export const getNow=()=> new Date();
 
 export const formatHeaderdate=(date)=>{
@@ -37,4 +32,17 @@ export const getOnlyTime=(date)=>{
     }).toLowerCase();
 
     return formattedTime;
+}
+
+export const getDayAndDate =(date)=>{
+    const dateStr = new Date(date);
+
+    const formattedDate = dateStr.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'America/New_York'
+    });
+
+    return formattedDate;
 }

@@ -45,7 +45,7 @@ console.log("------inputbox")
     return (
 
         <div className='inputRow'>
-        <input aria-label={isEditing? "Edit Task" : "Add a Task" }
+        <input aria-label="Add a Task" 
         ref={inputRef} 
         type="text" 
         placeholder="Add a task"

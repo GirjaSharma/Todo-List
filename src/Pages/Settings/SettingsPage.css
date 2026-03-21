@@ -1,0 +1,31 @@
+.settings-main-container{
+    overflow-y: auto;
+    flex: 1 1 auto;
+
+}
+
+
+.behavior-card{
+    padding: 0 1rem 1rem 1rem ;
+}
+
+.carryover-toggle{
+    display: flex;
+    justify-content: space-between
+}
+
+.toggleButton{
+    all: unset;
+    /* color: var(--primary-accent); */
+
+}
+
+.toggleOn{
+    color: var(--primary-accent); 
+    /* height: 40px; */
+
+}
+
+.toggleOff{
+    color: var(--inactive-nav)
+}

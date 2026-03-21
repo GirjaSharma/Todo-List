@@ -2,7 +2,8 @@ import { useState, useEffect, useReducer } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/global.css';
-import {generateId, getNow, formatTime, getDayKey} from './utils/utils';
+import { getNow, formatTime, getDayKey} from './utils/dateUtils';
+import {generateId} from './utils/idUtils';
 import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
 import History from './Pages/History/HistoryPage';
@@ -37,6 +38,8 @@ const App=()=> {
       return defaultInitialState;
     }
   }
+
+
 
   const [message, setMessage]= useState("");
   useEffect(() => {
@@ -131,6 +134,11 @@ const handleRemoveIcon =(id)=>{
 
   }
 
+  const handleCarryOverToggle =()=>{
+        dispatch({type: ACTION_TYPES.SET_CARRY_OVER})
+    }
+
+
   return (
   <main>
    {/* <Navbar/> */}
@@ -169,7 +177,12 @@ const handleRemoveIcon =(id)=>{
                   currentDate={state.currentDate} 
                   carryOverUnfinished={state.carryOverUnfinished}
                   />}/>
-      <Route path='/settings' element={<SettingsPage/>}/>
+      <Route path='/settings' element={<SettingsPage
+      handleCarryOverToggle={handleCarryOverToggle}
+      carryOverUnfinished={state.carryOverUnfinished}
+
+      
+      />}/>
       <Route path='*' element={<div>Item not found</div>}  />
      </Routes>
          </div>

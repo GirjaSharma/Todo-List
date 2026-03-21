@@ -1,14 +1,15 @@
 import { InputBox } from "../../components/InputBox/InputBox";
 import { TodoList } from "../../components/TodoList/TodoList";
 import { VscAdd } from "react-icons/vsc";
-import { parseDayKey} from '../../utils/utils'
+import { parseDayKey, getDayAndDate} from '../../utils/dateUtils'
 import { Message } from "../../components/Message/Message";
 import { StatusChip } from "../../components/StatusChip/StatusChip";
 import './TodayPage.css'
 import { Card } from "../../components/Card/Card";
 import { Navigation } from "../../components/Navigation/Navigation";
+import {getGroupedHistory} from '../../utils/historyUtils';
 
-const TodayPage =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate, message})=>{
+const TodayPage =({task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate, message,carryOverUnfinished})=>{
     const todaysTask= taskList.filter(task => (
         task.date === currentDate
     )
@@ -39,7 +40,7 @@ createdAt
     id: "1475dac5-5e6c-487d-8990-6cfe7eb2f232",
     completed: false,
     createdAt: "3/12/2026, 11:09:24 PM",
-    date: "2026-03-12"
+    date: "2026-03-16"
   },
   {
     text: "fix the css issue for input box width and button",
@@ -62,22 +63,23 @@ createdAt
     createdAt: "3/11/2026, 11:10:58 PM",
     date: "2026-03-11"
   }
-    ] 
-    const groupedHistory = Object.groupBy(historyTasks, task=> task.date);
+    ] ;
 
-    const getHistoryObject = Object.entries(groupedHistory)
-    .sort((a,b) => new Date(b[0]) - new Date(a[0]))
-     .map(([date, tasks]) => ({
-        date,
-        tasks,
-    }))
-    
+    const historyData= getGroupedHistory(historyTasks)
+ 
+    console.log(historyData, "historyData")
 
-    console.log(getHistoryObject, "getHistoryObject")
-
-    const getLatestDateHistory = getHistoryObject[0];
+    const getLatestDateHistory = historyData[0];
     console.log(getLatestDateHistory, "getLatestDateHistory")
+    const completedTasks = getLatestDateHistory.tasks.filter(task => task.completed).length;
+     const totalTasks = getLatestDateHistory.tasks.length;
     
+
+     console.log(taskList, "======taskList=========")
+
+     const todaysPendingTasks = taskList.filter(task => !task.completed).length;
+
+     console.log(todaysPendingTasks)
 
 return (
     < >
@@ -96,8 +98,8 @@ return (
         />
         <section className="status-chips">
             {/* todo -------  label will be dynamic -- get incomplete task number and carry over status */}
-            <StatusChip label="pending" status="pending"/>    
-            <StatusChip label="Carry-over" status="carryover"/>
+            <StatusChip label={`${todaysPendingTasks} pending`} status="pending"/>    
+            <StatusChip label={carryOverUnfinished ? "Carry-over: ON" : "Carry-over: OFF"} status="carryover" />
         </section>
 
         {message && <Message type="error" text={message}/>}
@@ -107,12 +109,32 @@ return (
         onEdit={onEdit}
         onCheckboxChange={onCheckboxChange}
         isEditing={isEditing}
+        onTaskChange={onTaskChange}
+         onCancelTask={onCancelTask} 
+            onUpdateTask={onUpdateTask} 
        />}
 
        <section>
        <p>History</p>
        <Card className="history">
-        {/* {todoo fill that first tem from sorted history list} */}
+         <header className="card-header">
+                                <h4>{getDayAndDate(getLatestDateHistory.date)}</h4>
+                                {carryOverUnfinished ? <p>Completed tasks</p> : <p>{completedTasks}/{totalTasks} done</p>}
+                                
+                            </header>
+                            <hr className="card-hr"/>
+                         <section className="list-card">
+                                {
+                                getLatestDateHistory.tasks.length && getLatestDateHistory.tasks.map(task=>(
+                                        <ul key={task.id}>
+                                            <li className="task"><span>{task.text}</span>
+                                                {/* <span>{!task.completed ? 'Pending' : getOnlyTime(task.createdAt)}</span> */}
+                                            </li>
+                                        </ul>
+                                       
+                                ))
+                            }
+                            </section>
        </Card>
        </section>
 

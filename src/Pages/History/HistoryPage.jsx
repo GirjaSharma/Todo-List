@@ -1,7 +1,8 @@
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Card } from "../../components/Card/Card";
 import './HistoryPage.css'
-import {parseDayKey, getOnlyTime} from '../../utils/utils'
+import {parseDayKey, getOnlyTime, getDayAndDate} from '../../utils/dateUtils';
+import {getGroupedHistory} from '../../utils/historyUtils';
 
 
 const History =({taskList, currentDate, carryOverUnfinished})=>{
@@ -57,23 +58,15 @@ createdAt
   }
     ]
     console.log("historyTasks", historyTasks)
-    const getTasksBasedOnDate = Object.groupBy(historyTasks, task => task.date);
-    console.log("getTasksBasedOnDate", getTasksBasedOnDate);
 
-    const getTasks = Object.entries(getTasksBasedOnDate)
-    .sort((a,b) => new Date(b[0]) - new Date(a[0]))
-    .map(([date, tasks]) => ({
-        date,
-        tasks,
-    }))
-    console.log("getTasks", getTasks)
+      const getTasks= getGroupedHistory(historyTasks)
 
    
 
     return (
         <>
         <main className="history-main-container">
-        <header className="history-header">
+        <header className="header">
             <div>
                 <h3>History</h3>
                 <p>Past tasks by day</p>
@@ -85,7 +78,7 @@ createdAt
             const completedTasks = tasks.filter(task => task.completed).length;
             const totalTasks = tasks.length;
             console.log("completedTasks", completedTasks, totalTasks,"totalTasks")
-             const dateLabel = date === currentDate ? "Today" : parseDayKey(date).toDateString();
+             const dateLabel = date === currentDate ? "Today" : getDayAndDate(date);
             //  const getDate = parseDayKey(date).toDateString();
             return(
                 <section className="task-card" key={date}>
