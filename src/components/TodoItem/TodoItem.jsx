@@ -56,7 +56,7 @@ console.log("editingText", editingText)
     console.log("todoItem------")
 return (
     <div className="taskContainer">
-         {isEditingThisTask ? (<div>
+         {isEditingThisTask ? (<div className="edit-text-container">
                 <input aria-label="Update a Task" 
       
         type="text" 
@@ -65,8 +65,10 @@ return (
         onChange={e=> onEditingTextChange(e.target.value)}
         // onKeyDown={handleKeyDown}
         />
-         <button type="button" className="updateBtn primary" onClick={onUpdateTask}>Update</button>
+        <button type="button" className="updateBtn primary" onClick={onUpdateTask}>Update</button>
            <button type="button" className="cancelBtn secondary" onClick={onCancelTask}>Cancel</button>
+       
+         
 </div>
             ) : <>
 
