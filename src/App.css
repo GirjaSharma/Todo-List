@@ -25,11 +25,41 @@ position:relative
 .todoContainer{
   min-height: 100vh;
   display: flex;
+  /* display: grid;
+grid-template-columns: 1fr; */
   flex-direction: column;
   box-sizing: border-box;
+  border: 0.75rem solid var(--outer-frame-navy);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--page-background);
+    font-size: 0.75rem;
+
 }
 
 
 p, li{
   color: var(--secondary-text)
+}
+
+
+@media screen and (min-width: 768px){
+  .todoContainer{
+border: 0.75rem solid var(--screen-background);
+font-size: 1rem;
+
+/* gap: 1.5rem */
+
+  }
+   
+}
+
+
+@media screen and (min-width: 1024px){
+  .todoContainer{
+border: 0.75rem solid var(--screen-background);
+font-size: 1rem;
+
+  }
+   
 }

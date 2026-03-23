@@ -6,7 +6,8 @@ export const initial_state={
     taskList:[],
     editId:null,
     currentDate: getDayKey(getNow()),
-    carryOverUnfinished: false
+    carryOverUnfinished: false,
+    editingText: null
 }
 
 export function reducer(state, action){
@@ -40,7 +41,7 @@ switch(action.type){
             if(t.id === state.editId){
                 return {
                     ...t,
-                    text: state.task
+                    text: state.editingText
                 }
             }
             return t
@@ -49,7 +50,8 @@ switch(action.type){
             ...state,
             taskList:updatedList,
             editId: null,
-            task:''
+            editingText:null,
+            
         }
         }
 
@@ -57,7 +59,8 @@ switch(action.type){
          return {
             ...state,
             editId: null,
-            task:''
+            task:'',
+            editingText: null
          }
         }
     case ACTION_TYPES.TOGGLE_TASK:{
@@ -79,14 +82,23 @@ switch(action.type){
         
     }
     case ACTION_TYPES.START_EDIT:{
-        const currentTask = state.taskList.find(t => t.id === action.payload)
+        const currentTask = state.taskList.find(t => t.id === action.payload.id);
+        if(!currentTask) return;
         return {
             ...state,
             editId: currentTask.id,
-            task: currentTask.text
+            editingText: currentTask.text
             
         }
 }
+
+case ACTION_TYPES.SET_EDITING_TEXT:{
+return{
+    ...state,
+    editingText: action.payload
+}
+}
+
 case ACTION_TYPES.SET_TASK_INPUT:{
     
         state.task= action.payload;
@@ -118,17 +130,10 @@ case ACTION_TYPES.START_NEW_DAY:{
 }
 
 case ACTION_TYPES.SET_CARRY_OVER:{
-    // carryOverUnfinished: !state.carryOverUnfinished;
     return{
         ...state,
         carryOverUnfinished: !state.carryOverUnfinished
     }
 }
-
-
-/*1. on start new day, if the cariiedOver flag is true, move the incomplete task to new Day, set their daye to current Date, display header date to current date
-2. move completed task to history, if carriedOver is false , even move them to history and new day should be blank with current date and input box 
-
-*/
 
 }}

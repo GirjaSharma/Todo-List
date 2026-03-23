@@ -6,13 +6,6 @@ import './SettingsPage.css'
 
 const SettingsPage =({carryOverUnfinished,handleCarryOverToggle})=>{
 
-    // const [isCarryOverToggled, setIsCarryOverToggled] = useState(false);
-    // const [isRecurringTasks, setIsRecurringTasks] = useState(false)
-
-    
-
-
-
     return (
          <>
         <main className="settings-main-container">

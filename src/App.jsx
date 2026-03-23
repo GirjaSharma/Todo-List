@@ -27,21 +27,14 @@ const App=()=> {
         currentDate: storedData.currentDate || defaultInitialState.currentDate,
       carryOverUnfinished: typeof storedData.carryOverUnfinished === 'boolean' ? storedData.carryOverUnfinished : defaultInitialState.carryOverUnfinished
       } 
-      
-      //  storedData ?
-      //  {...defaultInitialState,
-      //   taskList: storedData.taskList || [],
-      //    currentDate: storedData.currentDate || defaultInitialState.currentDate} 
-      //    : defaultInitialState;
     }catch(error){
       console.error("Error reading from localStorage");
       return defaultInitialState;
     }
   }
 
-
-
   const [message, setMessage]= useState("");
+
   useEffect(() => {
     if(!message) return;
 
@@ -98,10 +91,13 @@ const handleRemoveIcon =(id)=>{
   
 }
 
-    const handleEditIcon=(id)=>{
-      dispatch({type: ACTION_TYPES.START_EDIT, payload: id})
+    const handleEditIcon=(id, text)=>{
+      dispatch({type: ACTION_TYPES.START_EDIT, payload: {id,
+        text}
+      })
      
     }
+  
 
     const handleUpdateBtn=()=>{
       dispatch({type: ACTION_TYPES.UPDATE_TASK})
@@ -119,6 +115,10 @@ const handleRemoveIcon =(id)=>{
 
     const handleTaskChange=(newValue)=>{
       dispatch({type: ACTION_TYPES.SET_TASK_INPUT, payload: newValue})
+    }
+
+    const handleEditingTextChange=(newValue)=>{
+      dispatch({type: ACTION_TYPES.SET_EDITING_TEXT, payload: newValue})
     }
 
     const handleNewDay=()=>{
@@ -144,21 +144,9 @@ const handleRemoveIcon =(id)=>{
    {/* <Navbar/> */}
    <div className="todoContainer">
      <Routes>
-       {/* <Route path='/' element={<CurrentDate 
-            task={state.task} onAddTask={handleAddBtn} 
-            message={message}
-            onTaskChange={handleTaskChange} 
-            isEditing={isEditing} 
-            onCancelTask={handleCancelBtn} 
-            onUpdateTask={handleUpdateBtn}  
-            taskList={state.taskList}
-            currentDate={state.currentDate}
-            onDelete={handleRemoveIcon}
-            onEdit={handleEditIcon}
-            onCheckboxChange={handleCheckBoxChange}
-            onStartNewDay={handleNewDay}/>}
-            /> */}
       <Route path='/today' element={<TodayPage
+      editingText={state.editingText}
+      editId={state.editId}
               task={state.task} onAddTask={handleAddBtn} 
               message={message}
                     onTaskChange={handleTaskChange} 
@@ -171,7 +159,8 @@ const handleRemoveIcon =(id)=>{
                     onDelete={handleRemoveIcon}
                     onEdit={handleEditIcon}
                     onCheckboxChange={handleCheckBoxChange}
-                    onStartNewDay={handleNewDay}/>}/>
+                    onStartNewDay={handleNewDay}
+                    onEditingTextChange={handleEditingTextChange}/>}/>
       <Route path='/history' element={<History 
                   taskList={state.taskList}
                   currentDate={state.currentDate} 

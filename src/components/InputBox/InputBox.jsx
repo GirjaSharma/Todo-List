@@ -5,23 +5,19 @@ import { VscAdd } from "react-icons/vsc";
 export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask, onUpdateTask})=>{
 
     const inputRef = useRef(null)
-    useEffect(() =>{
-        if(isEditing){
-            inputRef.current.focus();
-            inputRef.current.select();
-        }
-    }, [isEditing])
+    // useEffect(() =>{
+    //     if(isEditing){
+    //         inputRef.current.focus();
+    //         inputRef.current.select();
+    //     }
+    // }, [isEditing])
 
 
     const handleKeyDown=(e)=>{
         if(e.key === 'Enter'){
             e.preventDefault();
-            if(isEditing) onUpdateTask();
-            else onAddTask(e)
-        }
-        if(e.key === 'Escape' && isEditing){
-            e.preventDefault();
-            onCancelTask()
+            
+                 onAddTask(e)
         }
     }
 
@@ -29,18 +25,12 @@ export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask,
         requestAnimationFrame(() => inputRef.current?.focus());
       }
     
-      const handleCancelBtn=()=>{
-        onCancelTask();
-        handleFocus();
-      }
 
       const handlePrimaryClick=(e)=>{
-        if(isEditing)onUpdateTask()
-         else onAddTask(e);
+        onAddTask(e);
         handleFocus()
 
       }
-console.log("------inputbox")
 
     return (
 
