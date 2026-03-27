@@ -1,27 +1,3 @@
-
-/* .todoContainer{
-min-height: 200px;
-  
-  margin: 0 auto;
-  width: min(100%, 700px);
-  
-  border: 2px solid var(--container-bg);
-  background-color: var(--container-bg);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
- align-items: center;
- padding-bottom: 20px;
-position:relative
-
-}
-
-.primary{
-  background-color: var(--primary);
-  color: var(--secondary)
-} */
-
-
 .todoContainer{
   min-height: 100vh;
   display: flex;

@@ -4,12 +4,22 @@
 
 }
 
-
-.behavior-card{
-    padding: 0 1rem 1rem 1rem ;
+.settings-card{
+padding: 0 1rem 1rem 1rem ;
+     margin-bottom: 10px
 }
 
-.carryover-toggle{
+h3,h4{
+    color: var(--primary-text)
+}
+
+
+/* p{
+  color: var(--secondary-text)
+} */
+
+
+.toggle-option{
     display: flex;
     justify-content: space-between
 }
@@ -21,11 +31,29 @@
 }
 
 .toggleOn{
-    color: var(--primary-accent); 
+    color: var(--toggle-on); 
     /* height: 40px; */
 
 }
 
 .toggleOff{
-    color: var(--inactive-nav)
+    color: var(--toggle-off)
+}
+
+/* .dark-theme{
+    all: unset;
+color: var(--primary-accent); 
+padding: 4px 22px;
+border: 1px solid var()
+} */
+
+.btn-theme{
+    all: unset;
+    border-radius: 4px;
+  
+  padding: 5px 10px;
+ margin-top: 2rem;
+background-color: var(--theme-btn-background);
+color: var(--theme-btn-text);
+border: 1px solid var(--theme-btn-border)
 }

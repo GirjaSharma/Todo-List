@@ -93,8 +93,8 @@ const History =({taskList, currentDate, carryOverUnfinished})=>{
                         {
                         tasks.map(task=>(
                                 <ul key={task.id}>
-                                    <li className="task"><span>{task.text}</span>
-                                        <span>{!task.completed ? 'Pending' : getOnlyTime(task.createdAt)}</span>
+                                    <li className="task"><span className="history-task-text">{task.text}</span>
+                                        <span className="history-task-time">{!task.completed ? 'Pending' : getOnlyTime(task.createdAt)}</span>
                                     </li>
                                 </ul>
                                

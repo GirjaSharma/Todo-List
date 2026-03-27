@@ -55,7 +55,20 @@ ul {
 .task{
 display: flex;
 justify-content: space-between;
-align-items: center;
+align-items: flex-start;
+gap:12px
+}
+
+.history-task-text{
+    flex: 1;
+    min-width: 0;
+}
+
+.history-task-time{
+flex-shrink:0;
+white-space: nowrap;
+color: var(--secondary-text);
+text-align: right;
 }
 
 

@@ -11,8 +11,8 @@
 }
 
 
-.header h1{
-    color: var(--header-text);
+.header h3{
+    color: var(--primary-text);
     margin:0
 
 }
@@ -29,6 +29,7 @@
 .icon-text{
     padding: 2px;
     font-size: 0.75rem;
+    color: var(--secondary-text);
 }
 
 .status-chips{

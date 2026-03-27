@@ -2,9 +2,13 @@ import {useState} from 'react'
 import { Card } from "../../components/Card/Card";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { FaToggleOn, FaToggleOff } from 'react-icons/fa';
-import './SettingsPage.css'
+import './SettingsPage.css';
+import {useTheme} from '../../hooks/useTheme.js';
 
-const SettingsPage =({carryOverUnfinished,handleCarryOverToggle})=>{
+const SettingsPage =({carryOverUnfinished,handleCarryOverToggle,
+    // darkTheme, handleThemeSwitch
+})=>{
+    const {theme, toggleTheme} = useTheme();
 
     return (
          <>
@@ -16,9 +20,9 @@ const SettingsPage =({carryOverUnfinished,handleCarryOverToggle})=>{
             </div>
             </header>
             <section className="behavior-settings">
-                <Card className="behavior-card">
+                <Card className="settings-card">
                     <h3>Daily behavior</h3>
-                    <div className="carryover-toggle">
+                    <div className="toggle-option">
                         <div>
 <h4>Carry over unfinished tasks</h4>
 <p>Show incomplete tasks from yesterday</p>
@@ -27,15 +31,22 @@ const SettingsPage =({carryOverUnfinished,handleCarryOverToggle})=>{
                             {carryOverUnfinished ? <FaToggleOn size={40} className="toggleOn"/> : <FaToggleOff size={40}  class="toggleOff"/>}
                         </button>
                     </div>
-                     {/* <div className="recurring-toggle">
+                    
+                </Card>
+               
+            </section>
+            <section className="theme-settings">
+                 <Card className="settings-card">
+                     <div className="toggle-option">
                         <div>
-<h4>Auto-add recurring tasks</h4>
-<p>Tasks marked appear daily each new day</p>
+                            <h4>Appearance</h4>
+                            <p>Theme</p>
                         </div>
-                        <button className="toggleButton" onClick={handleRecurringToggle}>
-                            {isRecurringTasks ? <FaToggleOn size={40} className="toggleOn"/> : <FaToggleOff size={40}  class="toggleOff"/>}
-                        </button>
-                    </div> */}
+<div>  <button className="btn-theme" onClick={toggleTheme}>{theme === 'light' ? "Dark" : "Light"}</button></div>
+                     
+                      
+                       
+                    </div>
                 </Card>
             </section>
         </main>
