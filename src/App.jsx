@@ -8,10 +8,20 @@ import {reducer, initial_state as defaultInitialState} from './reducer/Reducer';
 import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
 import History from './Pages/History/HistoryPage';
 import SettingsPage from './Pages/Settings/SettingsPage';
-import TodayPage from './Pages/Today/TodayPage'
+import TodayPage from './Pages/Today/TodayPage';
+import {getTasks, postTask, updateTask} from './services/taskApi';
 
 
 const App=()=> {
+
+
+useEffect(()=>{
+  const fetchData = async()=>{
+    const data = await getTasks();
+    dispatch({type: ACTION_TYPES.SET_TASKS, payload: data})
+  }
+  fetchData();
+}, []);
 
   const initialState=(defaultInitialState)=>{
     try{
@@ -51,7 +61,7 @@ const App=()=> {
   const isEditing = state.editId !== null;
 
 
-  useEffect(() => {
+useEffect(() => {
 localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate, carryOverUnfinished: state.carryOverUnfinished}));
 console.log("saving to localStorage", {
   taskList:state.taskList,
@@ -59,30 +69,33 @@ console.log("saving to localStorage", {
 })
   }, [state.taskList,state.currentDate, state.carryOverUnfinished]);
 
-  console.log("full state", state);
-  console.log("state.taskList", state.taskList);
-  console.log("isArray", Array.isArray(state.taskList));
 
+//   const [loading, setLoading] =useState(false);
+// const [data, setData ] = useState([]);
+const [error, setError] = useState("");
 
-
-  const handleAddBtn=(e)=>{
+const handleAddBtn=async(e)=>{
     e.preventDefault();
     const now=getNow()
     if(!state.task.trim())return ;
 
-
-    dispatch({
-      type: ACTION_TYPES.ADD_TASK,
-      payload: {
-        id:generateId(),
+    const newTaskData = {
+      id:generateId(),
         text: state.task.trim(),
         completed: false,
         createdAt: formatTime(now),
         date: getDayKey(now)
+    }
 
-      }
+    try{
+      const taskData = await postTask(newTaskData)
+        dispatch({
+      type: ACTION_TYPES.ADD_TASK,
+      payload: taskData
     })
-
+    }catch(error){
+      setError('Failed to add task')
+    }
     }
 
 

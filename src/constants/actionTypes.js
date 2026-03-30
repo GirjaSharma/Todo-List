@@ -1,4 +1,5 @@
 export const ACTION_TYPES={
+    SET_TASKS: "SET_TASKS",
     ADD_TASK: "ADD_TASK",
     DELETE_TASK: "DELETE_TASK",
     START_EDIT : "START_EDIT",

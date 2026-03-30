@@ -10,7 +10,7 @@ grid-template-columns: 1fr; */
   padding: 1rem;
   background-color: var(--page-background);
     font-size: 0.75rem;
-
+gap:16px;
 }
 
 
@@ -23,19 +23,21 @@ p, li{
   .todoContainer{
 border: 0.75rem solid var(--screen-background);
 font-size: 1rem;
-
-/* gap: 1.5rem */
+display: grid;
+grid-template-columns: 2fr 1fr;
+gap: 1.5rem;
+align-items: start
 
   }
    
 }
 
 
-@media screen and (min-width: 1024px){
+/* @media screen and (min-width: 1024px){
   .todoContainer{
 border: 0.75rem solid var(--screen-background);
 font-size: 1rem;
 
   }
    
-}
+} */

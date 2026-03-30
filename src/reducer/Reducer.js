@@ -12,18 +12,26 @@ export const initial_state={
 
 export function reducer(state, action){
 switch(action.type){
+    case ACTION_TYPES.SET_TASKS:
+        {
+            return{
+                ...state,
+                taskList: action.payload
+            }
+        }
+
     case ACTION_TYPES.ADD_TASK:
          {
-        const newTask={
-            text: action.payload.text,
-            id: action.payload.id,
-            completed: action.payload.completed,
-            createdAt: action.payload.createdAt,
-            date: action.payload.date
-        }
+        // const newTask={
+        //     text: action.payload.text,
+        //     id: action.payload.id,
+        //     completed: action.payload.completed,
+        //     createdAt: action.payload.createdAt,
+        //     date: action.payload.date
+        // }
         return {
             ...state,
-            taskList: [...state.taskList, newTask],
+            taskList: [...state.taskList, action.payload],
             task:'',
             editId:null
         }
