@@ -9,16 +9,29 @@ import {ACTION_TYPES, STORAGE_KEY} from './constants/actionTypes';
 import History from './Pages/History/HistoryPage';
 import SettingsPage from './Pages/Settings/SettingsPage';
 import TodayPage from './Pages/Today/TodayPage';
-import {getTasks, postTask, updateTask} from './services/taskApi';
+import {getTasks, postTask, updateTask, deleteTask} from './services/taskApi';
+import {Spinner} from './components/Spinner/Spinner';
 
 
 const App=()=> {
 
+    const [loading, setLoading] =useState(true);
+
+const [error, setError] = useState("");
+
 
 useEffect(()=>{
   const fetchData = async()=>{
-    const data = await getTasks();
+    try{
+      setLoading(true)
+       const data = await getTasks();
     dispatch({type: ACTION_TYPES.SET_TASKS, payload: data})
+    }
+   catch(error){
+    setError("Failed to fetch tasks")
+   }finally{
+    setLoading(false)
+   }
   }
   fetchData();
 }, []);
@@ -33,7 +46,7 @@ useEffect(()=>{
 
       return{
         ...defaultInitialState,
-        taskList: Array.isArray(storedData.taskList) ? storedData.taskList : [],
+        // taskList: Array.isArray(storedData.taskList) ? storedData.taskList : [],
         currentDate: storedData.currentDate || defaultInitialState.currentDate,
       carryOverUnfinished: typeof storedData.carryOverUnfinished === 'boolean' ? storedData.carryOverUnfinished : defaultInitialState.carryOverUnfinished
       } 
@@ -62,17 +75,13 @@ useEffect(()=>{
 
 
 useEffect(() => {
-localStorage.setItem(STORAGE_KEY, JSON.stringify({taskList:state.taskList, currentDate:state.currentDate, carryOverUnfinished: state.carryOverUnfinished}));
-console.log("saving to localStorage", {
-  taskList:state.taskList,
-  currentDate: state.currentDate
-})
-  }, [state.taskList,state.currentDate, state.carryOverUnfinished]);
+localStorage.setItem(STORAGE_KEY, JSON.stringify({
+  // taskList:state.taskList,
+   currentDate:state.currentDate, carryOverUnfinished: state.carryOverUnfinished}));
+  }, [
+    // state.taskList,
+    state.currentDate, state.carryOverUnfinished]);
 
-
-//   const [loading, setLoading] =useState(false);
-// const [data, setData ] = useState([]);
-const [error, setError] = useState("");
 
 const handleAddBtn=async(e)=>{
     e.preventDefault();
@@ -99,8 +108,14 @@ const handleAddBtn=async(e)=>{
     }
 
 
-const handleRemoveIcon =(id)=>{
-  dispatch({type: ACTION_TYPES.DELETE_TASK, payload: id})
+const handleRemoveIcon =async(id)=>{
+  try{
+    await deleteTask(id)
+ dispatch({type: ACTION_TYPES.DELETE_TASK, payload: id})
+  }catch(error){
+    console.error("delete failed", error)
+  }
+ 
   
 }
 
@@ -112,8 +127,16 @@ const handleRemoveIcon =(id)=>{
     }
   
 
-    const handleUpdateBtn=()=>{
-      dispatch({type: ACTION_TYPES.UPDATE_TASK})
+    const handleUpdateBtn=async(e)=>{
+      try{
+          await updateTask(state.editId, {
+            text: state.editingText.trim()
+          })
+          dispatch({type: ACTION_TYPES.UPDATE_TASK})
+      }
+      catch(error){
+        console.error("update failed", error)
+      }
       
     }
 
@@ -121,8 +144,15 @@ const handleRemoveIcon =(id)=>{
       dispatch({type: ACTION_TYPES.CANCEL_UPDATE})
     }
 
-    const handleCheckBoxChange =(id)=>{
-      dispatch({type: ACTION_TYPES.TOGGLE_TASK, payload: id})
+    const handleCheckBoxChange =async (task)=>{
+      try{
+        await updateTask(task.id, {completed: !task.completed})
+        dispatch({type: ACTION_TYPES.TOGGLE_TASK, payload: task.id})
+      }
+      catch(error){
+         console.error("toggle update failed", error)
+      }
+      
     }
     
 
@@ -151,10 +181,20 @@ const handleRemoveIcon =(id)=>{
         dispatch({type: ACTION_TYPES.SET_CARRY_OVER})
     }
 
+{loading && 
+    <div className="spinnerOverlay">
+    <Spinner/>
+    </div>
+}
+
+if(error){
+return <p>{error}</p>
+}
 
   return (
+    
   <main>
-   {/* <Navbar/> */}
+    
    <div className="todoContainer">
      <Routes>
       <Route path='/today' element={<TodayPage

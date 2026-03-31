@@ -10,9 +10,6 @@ export const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange
 
 
             const isEditingThisTask = editId === task.id;
-console.log("task ---- todoItem", task);
-console.log("editingText", editingText)
-
                 const inputRef = useRef(null)
                 useEffect(() =>{
                     if(isEditingThisTask && inputRef.current){
@@ -52,8 +49,7 @@ console.log("editingText", editingText)
     // const addTodo = useCallback(() => {
 
     // },[task])
-    console.log("task.createdAt", task.createdAt)
-    console.log("todoItem------")
+   
 return (
     <div className="taskContainer">
          {isEditingThisTask ? (<div className="edit-text-container">
@@ -76,7 +72,7 @@ return (
 
   <Checkbox 
         checked={task.completed}
-        onChange={()=>onChange(task.id)}
+        onChange={()=>onChange(task)}
         id={task.id}>
            {task.text}
         

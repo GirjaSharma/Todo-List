@@ -13,21 +13,18 @@ import {getGroupedHistory} from '../../utils/historyUtils';
 const TodayPage =(
     {task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate, message,carryOverUnfinished, editingText, editId, onEditingTextChange}
 )=>{
-    const todaysTask= taskList.filter(task => (
+    const todaysTask= taskList?.filter(task => (
         task.date === currentDate
     )
     );
-    const historyTasks= taskList.filter(task => task.date !== currentDate);
+    const historyTasks= taskList?.filter(task => task.date !== currentDate);
 
     const historyData= getGroupedHistory(historyTasks)
- 
-    console.log(historyData, "historyData")
+    const getLatestDateHistory = historyData[0] || null;
+    const completedTasks = getLatestDateHistory ? getLatestDateHistory?.tasks?.filter(task => task.completed).length : 0;
+    const totalTasks = getLatestDateHistory?.tasks?.length;
 
-    const getLatestDateHistory = historyData[0];
-    const completedTasks = getLatestDateHistory.tasks.filter(task => task.completed).length;
-    const totalTasks = getLatestDateHistory.tasks.length;
-
-    const todaysPendingTasks = taskList.filter(task => !task.completed).length;
+    const todaysPendingTasks = taskList?.filter(task => !task.completed).length;
 
 return (
     < >
@@ -63,7 +60,7 @@ return (
             editId={editId}
             onEditingTextChange={onEditingTextChange}
     />}
-
+{getLatestDateHistory && 
     <section>
         <p>History</p>
         <Card className="history">
@@ -86,7 +83,7 @@ return (
                             </section>
     </Card>
     </section>
-
+}
     <div className="settings">
     <p>Settings</p>
     <Card>

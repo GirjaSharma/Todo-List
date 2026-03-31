@@ -46,16 +46,13 @@ export async function updateTask(id, updates){
     try{
         const response = await fetch(`${BASE_URL}/${id}`,{
             method: "PATCH",
-             headers: {
+            headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(updates)
-            }
-           
-            
-            )
-              const data = await response.json();
-         return data;
+        })
+        const data = await response.json();
+        return data;
     }
     catch(error){
         console.error(error)
@@ -63,3 +60,22 @@ export async function updateTask(id, updates){
     }
 }
 
+
+export async function deleteTask(id){
+    try{
+        const response = await fetch(`${BASE_URL}/${id}`, {
+            method: "DELETE",
+       
+    })
+     if(!response.ok){
+            throw new Error('Failed to fetch tasks')
+        }
+    const data= await response.json();
+    console.log(data);
+    return data;
+    }
+    catch(error){
+        console.error(error)
+        throw error;
+    }
+}

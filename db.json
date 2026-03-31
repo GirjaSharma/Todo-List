@@ -30,10 +30,24 @@
     },
     {
       "id": "945828ca-eb7c-469a-82be-1b447dc52dd8",
-      "text": "integrate API",
+      "text": "API integration",
       "completed": false,
       "createdAt": "3/30/2026, 2:20:13 PM",
-      "date": "2026-03-30"
+      "date": "2026-03-31"
+    },
+    {
+      "id": "8accca5f-c4be-45c9-bda8-1604184648cd",
+      "text": "disable add button if current page date and todays date are different before starting new day",
+      "completed": false,
+      "createdAt": "3/31/2026, 2:22:56 PM",
+      "date": "2026-03-31"
+    },
+    {
+      "id": "3f325ee6-392f-48e7-a9ab-902d5eea038e",
+      "text": "do all types of testing",
+      "completed": false,
+      "createdAt": "3/31/2026, 2:29:29 PM",
+      "date": "2026-03-31"
     }
   ]
 }
