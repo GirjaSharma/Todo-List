@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import './styles/global.css';
 import { getNow, formatTime, getDayKey} from './utils/dateUtils';
@@ -195,6 +195,7 @@ return <p>{error}</p>
     
    <div className="todoContainer">
      <Routes>
+      <Route path="/" element={<Navigate to="/today" replace/>}/>
       <Route path='/today' element={<TodayPage
       editingText={state.editingText}
       editId={state.editId}
