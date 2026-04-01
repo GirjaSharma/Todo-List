@@ -22,5 +22,5 @@ A full-featured task management application built using React with API integrati
 - Reducer for global state management
 
 ## Links
-- Live: (will add after deployment)
+- Live: https://todo-list-gray-tau-63.vercel.app/
 - GitHub: https://github.com/GirjaSharma/Todo-List
