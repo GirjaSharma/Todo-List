@@ -28,7 +28,7 @@ const SettingsPage =({carryOverUnfinished,handleCarryOverToggle,
 <p>Show incomplete tasks from yesterday</p>
                         </div>
                         <button className="toggleButton" onClick={handleCarryOverToggle}>
-                            {carryOverUnfinished ? <FaToggleOn size={40} className="toggleOn"/> : <FaToggleOff size={40}  class="toggleOff"/>}
+                            {carryOverUnfinished ? <FaToggleOn size={40} className="toggleOn"/> : <FaToggleOff size={40}  className="toggleOff"/>}
                         </button>
                     </div>
                     

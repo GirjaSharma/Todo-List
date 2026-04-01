@@ -24,7 +24,7 @@ const TodayPage =(
     const completedTasks = getLatestDateHistory ? getLatestDateHistory?.tasks?.filter(task => task.completed).length : 0;
     const totalTasks = getLatestDateHistory?.tasks?.length;
 
-    const todaysPendingTasks = taskList?.filter(task => !task.completed).length;
+    const todaysPendingTasks = todaysTask?.filter(task => !task.completed).length;
 
 return (
     < >

@@ -1,28 +1,28 @@
 {
   "tasks": [
     {
-      "text": "Add settings page",
+      "text": "Add settings preview",
       "id": "4ec63872-7fe9-4aae-8628-be2c73e1dfd0",
       "completed": true,
       "createdAt": "3/19/2026, 12:10:59 AM",
       "date": "2026-03-20"
     },
     {
-      "text": "if the date is previous , still new day has not been started, keep the add button disabled",
+      "text": "test and fix accessibility issues",
       "id": "97a6baaa-0a19-49d2-8047-7205f3de75c7",
       "completed": true,
       "createdAt": "3/20/2026, 2:03:40 PM",
       "date": "2026-03-23"
     },
     {
-      "text": "Add dark colors for different theme",
+      "text": "Implement dark mode theme",
       "id": "3b1677aa-bff8-4535-a2e5-dcebba9ec0fa",
       "completed": true,
       "createdAt": "3/23/2026, 3:06:56 PM",
       "date": "2026-03-24"
     },
     {
-      "text": "if the date is previous , still new day has not been started, keep the add button disabled",
+      "text": "disable add button before starting new day",
       "id": "773ba4c5-19f3-400b-ae2f-bfca4aa3012e",
       "completed": true,
       "createdAt": "3/21/2026, 2:03:40 PM",
@@ -30,24 +30,38 @@
     },
     {
       "id": "945828ca-eb7c-469a-82be-1b447dc52dd8",
-      "text": "API integration",
+      "text": "Integrate REST API",
       "completed": false,
       "createdAt": "3/30/2026, 2:20:13 PM",
       "date": "2026-03-31"
     },
     {
       "id": "8accca5f-c4be-45c9-bda8-1604184648cd",
-      "text": "disable add button if current page date and todays date are different before starting new day",
+      "text": "Prepare frontend mock interviews",
       "completed": false,
       "createdAt": "3/31/2026, 2:22:56 PM",
       "date": "2026-03-31"
     },
     {
       "id": "3f325ee6-392f-48e7-a9ab-902d5eea038e",
-      "text": "do all types of testing",
+      "text": "do thorough testing",
       "completed": false,
       "createdAt": "3/31/2026, 2:29:29 PM",
       "date": "2026-03-31"
+    },
+    {
+      "id": "f0f37caa-8863-4e23-97d4-69a82f1dac44",
+      "text": "Deploy the app",
+      "completed": false,
+      "createdAt": "4/1/2026, 1:56:47 PM",
+      "date": "2026-04-01"
+    },
+    {
+      "id": "a82a726c-2ad3-466b-8238-43e4611562c0",
+      "text": "Finalize Resume",
+      "completed": false,
+      "createdAt": "4/1/2026, 1:57:15 PM",
+      "date": "2026-04-01"
     }
   ]
 }

@@ -165,8 +165,6 @@ const handleRemoveIcon =async(id)=>{
     }
 
     const handleNewDay=()=>{
-      console.log(getDayKey(new Date()), "getDayKey(today)");
-      console.log(state.currentDate, "state.currentDate")
       if( getDayKey(new Date())=== state.currentDate){
         setMessage("Already viewing today's tasks")
         return
