@@ -1,8 +1,26 @@
-# React + Vite
+# Task Management Application (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured task management application built using React with API integration.
 
-Currently, two official plugins are available:
+## Features
+- Add, edit, and delete tasks
+- Toggle task completion
+- Task history by date
+- Carry-over unfinished tasks
+- Light/Dark theme support
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React
+- JavaScript (ES6+)
+- CSS
+- REST API (json-server)
+- Reducer pattern for state management
+
+## Project Structure
+- Components-based architecture
+- Services layer for API calls
+- Reducer for global state management
+
+## Links
+- Live: (will add after deployment)
+- GitHub: https://github.com/GirjaSharma/Todo-List
