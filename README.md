@@ -10,17 +10,21 @@ A full-featured task management application built using React with API integrati
 - Light/Dark theme support
 
 ## Tech Stack
-- React
+- React(Vite)
 - JavaScript (ES6+)
 - CSS
+- React Router
 - REST API (json-server)
 - Reducer pattern for state management
+- Vercel (frontend deployment)
+- Render (backend deployment)
 
 ## Project Structure
-- Components-based architecture
-- Services layer for API calls
-- Reducer for global state management
+- Components-based architecture for scalable UI development
+- Services layer abstraction for API integration
+- Reducer pattern for centralized state management
 
 ## Links
-- Live: (will add after deployment)
+A Mobile-first task management application
+- Live: https://todo-list-gray-tau-63.vercel.app/today
 - GitHub: https://github.com/GirjaSharma/Todo-List
