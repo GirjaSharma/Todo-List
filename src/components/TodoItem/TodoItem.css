@@ -47,6 +47,13 @@
     cursor: pointer;
   }
 
+
+   .trashIcon:focus-visible, .editIcon:focus-visible {
+  outline: 3px solid orange; /* High contrast color */
+  outline-offset: 2px;
+  border-radius: 4px; /* Optional: smooth corners */
+}
+
   .edit-text-container{
     margin-bottom: 0.25rem;
   

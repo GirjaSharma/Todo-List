@@ -24,7 +24,9 @@
     display: flex;
     align-items: center;
 }
-
+.icon{
+    color: var(--secondary-text)
+}
 
 .icon-text{
     padding: 2px;
@@ -35,6 +37,10 @@
 .status-chips{
     margin: 1rem 0 1rem 0;
 
+}
+
+.history{
+    margin-top: 1.25rem;
 }
 
 .footer-navigation{

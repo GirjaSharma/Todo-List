@@ -24,7 +24,8 @@ useEffect(()=>{
   const fetchData = async()=>{
     try{
       setLoading(true)
-       const data = await getTasks();
+      setError("")
+       const data = await getTasks();  
     dispatch({type: ACTION_TYPES.SET_TASKS, payload: data})
     }
    catch(error){
@@ -179,17 +180,20 @@ const handleRemoveIcon =async(id)=>{
         dispatch({type: ACTION_TYPES.SET_CARRY_OVER})
     }
 
-{loading && 
-    <div className="spinnerOverlay">
+  
+
+if(loading) {
+  return (
+<div className="spinnerOverlay">
     <Spinner/>
     </div>
+  ) 
 }
-
-if(error){
+      if(error){
 return <p>{error}</p>
 }
-
-  return (
+ 
+    return (
     
   <main>
     
@@ -228,8 +232,10 @@ return <p>{error}</p>
      </Routes>
          </div>
   </main>
-   
-  )
+    )
+
+
+  
 }
 
 export default App

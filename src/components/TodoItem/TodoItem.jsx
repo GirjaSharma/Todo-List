@@ -1,9 +1,7 @@
-import { useState,useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import './TodoItem.css' ;
-import { useCallback } from "react";
-import { StatusChip } from "../StatusChip/StatusChip";
 
 export const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange,  onCancelTask, editingText
            , onUpdateTask, editId, onEditingTextChange })=>{
@@ -19,50 +17,45 @@ export const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange
                 }, [isEditingThisTask])
             
             
-                // const handleKeyDown=(e)=>{
-                //     if(e.key === 'Enter'){
-                //         e.preventDefault();
-                //       onUpdateTask();
-                       
-                //     }
-                //     if(e.key === 'Escape'){
-                //         e.preventDefault();
-                //         onCancelTask()
-                //     }
-                // }
+                const handleKeyDown=(e)=>{
+                    if(e.key === 'Enter'){
+                    e.preventDefault();
+                    onUpdateTask();
+                    }
+                    if(e.key === 'Escape'){
+                        e.preventDefault();
+                        onCancelTask()
+                    }
+                }
             
-                // const handleFocus=()=>{
-                //     requestAnimationFrame(() => inputRef.current?.focus());
-                //   }
+                const handleFocus=()=>{
+                    requestAnimationFrame(() => inputRef.current?.focus());
+                  }
                 
-                //   const handleCancelBtn=()=>{
-                //     onCancelTask();
-                //     handleFocus();
-                //   }
+                  const handleCancelBtn=()=>{
+                    onCancelTask();
+                    handleFocus();
+                  }
             
-                //   const handlePrimaryClick=()=>{
-                    
-                //     handleFocus()
+                  const handlePrimaryClick=()=>{
+                    onUpdateTask()
+                    handleFocus()
             
-                //   }
+                  }
 
-    // const addTodo = useCallback(() => {
-
-    // },[task])
    
 return (
     <div className="taskContainer">
          {isEditingThisTask ? (<div className="edit-text-container">
                 <input aria-label="Update a Task" 
-      
+      onKeyDown={handleKeyDown}
         type="text" 
        ref={inputRef}
         value={editingText} 
         onChange={e=> onEditingTextChange(e.target.value)}
-        // onKeyDown={handleKeyDown}
         />
-        <button type="button" className="updateBtn primary" onClick={onUpdateTask}>Update</button>
-           <button type="button" className="cancelBtn secondary" onClick={onCancelTask}>Cancel</button>
+        <button type="button" className="updateBtn primary" onClick={handlePrimaryClick}>Update</button>
+           <button type="button" className="cancelBtn secondary" onClick={handleCancelBtn}>Cancel</button>
        
          
 </div>
@@ -87,7 +80,6 @@ return (
         </div>
         </>
         }
-        {/* <p>created at: {task.createdAt}</p>  */}
             
         </div>
 )

@@ -32,12 +32,13 @@ return (
     <header className="header">
         <div><h3>Today's Tasks </h3>
         <p>{parseDayKey(currentDate).toDateString()}</p></div>
-        <button type="button" onClick={onStartNewDay}><VscAdd aria-hidden="true" /><span className="icon-text">New day</span></button>
+        <button type="button" onClick={onStartNewDay}><VscAdd className="icon" aria-hidden="true" /><span className="icon-text">New day</span></button>
         </header>
         <InputBox 
             task={task} onAddTask={onAddTask} 
             onTaskChange={onTaskChange} 
             isEditing={isEditing} 
+            currentDate={currentDate}
             
         />
         <section className="status-chips">
@@ -61,7 +62,7 @@ return (
             onEditingTextChange={onEditingTextChange}
     />}
 {getLatestDateHistory && 
-    <section>
+    <section className="history">
         <p>History</p>
         <Card className="history">
         <header className="card-header">
@@ -84,12 +85,12 @@ return (
     </Card>
     </section>
 }
-    <div className="settings">
+    {/* <div className="settings">
     <p>Settings</p>
     <Card>
 
     </Card>
-    </div>
+    </div> */}
 
     </main>
         

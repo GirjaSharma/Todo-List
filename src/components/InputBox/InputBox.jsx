@@ -1,17 +1,11 @@
 import { useEffect, useRef } from "react";
 import './InputBox.css';
 import { VscAdd } from "react-icons/vsc";
+import {getDayKey} from '../../utils/dateUtils'
 
-export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask, onUpdateTask})=>{
+export const InputBox =({task, onAddTask, onTaskChange, currentDate})=>{
 
     const inputRef = useRef(null)
-    // useEffect(() =>{
-    //     if(isEditing){
-    //         inputRef.current.focus();
-    //         inputRef.current.select();
-    //     }
-    // }, [isEditing])
-
 
     const handleKeyDown=(e)=>{
         if(e.key === 'Enter'){
@@ -32,6 +26,8 @@ export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask,
 
       }
 
+      const isCurrentDate = getDayKey(new Date()) !== currentDate
+
     return (
 
         <div className='inputRow'>
@@ -44,16 +40,7 @@ export const InputBox =({task, onAddTask, onTaskChange, isEditing, onCancelTask,
         onKeyDown={handleKeyDown}
         />
         
-        <button type="button" className="addBtnIcon" onClick={handlePrimaryClick}><VscAdd aria-hidden="true" /></button>
-
-        {/* <div className={isEditing ? "editButtonStyle" : "buttonsStyle"}>
-
-        <button type="button" className="addBtn primary" onClick={handlePrimaryClick}>{isEditing ? 'Update' : 'Add'}</button>
-
-        {isEditing && (
-            <button type="button" className="cancelBtn secondary" onClick={handleCancelBtn}>Cancel</button>
-        )} 
-        </div> */}
+        <button type="button" className="addBtnIcon" disabled={isCurrentDate} onClick={handlePrimaryClick}><VscAdd aria-hidden="true" /></button>
         
         </div>
           
