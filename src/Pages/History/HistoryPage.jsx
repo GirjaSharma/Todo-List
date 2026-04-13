@@ -20,6 +20,9 @@ const History =({taskList, currentDate, carryOverUnfinished})=>{
                 <h3>History</h3>
                 <p>Past tasks by day</p>
             </div>
+             <div className="tablet-nav">
+            <Navigation/>
+        </div>
 {/* ADD DROPDOWN FOR FILTERING dates months if long list or try to implement calender */}
         </header>
 

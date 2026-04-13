@@ -32,25 +32,12 @@ p, li{
   z-index: 999;
 }
 
-/* @media screen and (min-width: 768px){
-  .todoContainer{
-border: 0.75rem solid var(--screen-background);
-font-size: 1rem;
-display: grid;
-grid-template-columns: 2fr 1fr;
-gap: 1.5rem;
-align-items: start
-
-  }
-   
-} */
-
-
-/* @media screen and (min-width: 1024px){
+@media screen and (min-width: 768px){
   .todoContainer{
 border: 0.75rem solid var(--screen-background);
 font-size: 1rem;
 
   }
    
-} */
+}
+

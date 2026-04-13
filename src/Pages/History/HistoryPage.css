@@ -4,15 +4,6 @@
 
 }
 
-/* .header{
- 
-        display: flex;
-        justify-content: space-between; 
-        align-items: center;  
-        margin-bottom: 1rem;   
-    
-} */
-
 .task-card{
 margin-bottom:1rem
 }
@@ -79,4 +70,10 @@ text-align: right;
 .empty-history{
     text-align: center;
     /* margin-top: 2rem; */
+}
+
+@media screen and (min-width: 768px){
+   .tablet-nav{
+    /* align-items: center */
+   }
 }

@@ -18,6 +18,9 @@ const SettingsPage =({carryOverUnfinished,handleCarryOverToggle,
                 <h3>Settings</h3>
                 <p>Daily behavior and preferences</p>
             </div>
+             <div className="tablet-nav">
+            <Navigation/>
+        </div>
             </header>
             <section className="behavior-settings">
                 <Card className="settings-card">

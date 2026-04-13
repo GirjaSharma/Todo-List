@@ -31,67 +31,79 @@ return (
     <main className="main-container">
     <header className="header">
         <div><h3>Today's Tasks </h3>
-        <p>{parseDayKey(currentDate).toDateString()}</p></div>
+        <p>{parseDayKey(currentDate).toDateString()}</p>
+        </div>
+
+        <div className="tablet-nav">
+            <Navigation/>
+        </div>
+
         <button type="button" onClick={onStartNewDay}><VscAdd className="icon" aria-hidden="true" /><span className="icon-text">New day</span></button>
-        </header>
-        <InputBox 
-            task={task} onAddTask={onAddTask} 
-            onTaskChange={onTaskChange} 
-            isEditing={isEditing} 
-            currentDate={currentDate}
+    </header>
+    <div className="content-layout">
+        <section className="today-content">
+            <InputBox 
+                task={task} onAddTask={onAddTask} 
+                onTaskChange={onTaskChange} 
+                isEditing={isEditing} 
+                currentDate={currentDate}
+                
+            />
+            <section className="status-chips">
+                <StatusChip label={`${todaysPendingTasks} pending`} status="pending"/>    
+                <StatusChip label={carryOverUnfinished ? "Carry-over: ON" : "Carry-over: OFF"} status="carryover" />
+            </section>
+
+            {message && <Message type="error" text={message}/>}
             
-        />
-        <section className="status-chips">
-            {/* todo -------  label will be dynamic -- get incomplete task number and carry over status */}
-            <StatusChip label={`${todaysPendingTasks} pending`} status="pending"/>    
-            <StatusChip label={carryOverUnfinished ? "Carry-over: ON" : "Carry-over: OFF"} status="carryover" />
+            {taskList?.length > 0 && <TodoList taskList={todaysTask} 
+            editingText={editingText}
+            onDelete={onDelete}
+            onEdit={onEdit}
+            onCheckboxChange={onCheckboxChange}
+            isEditing={isEditing}
+            onTaskChange={onTaskChange}
+            onCancelTask={onCancelTask} 
+                onUpdateTask={onUpdateTask} 
+                editId={editId}
+                onEditingTextChange={onEditingTextChange}
+        />}
         </section>
+        <aside className="today-sidebar">
+    {getLatestDateHistory && 
 
-        {message && <Message type="error" text={message}/>}
-        
-        {taskList?.length > 0 && <TodoList taskList={todaysTask} 
-        editingText={editingText}
-        onDelete={onDelete}
-        onEdit={onEdit}
-        onCheckboxChange={onCheckboxChange}
-        isEditing={isEditing}
-        onTaskChange={onTaskChange}
-        onCancelTask={onCancelTask} 
-            onUpdateTask={onUpdateTask} 
-            editId={editId}
-            onEditingTextChange={onEditingTextChange}
-    />}
-{getLatestDateHistory && 
-    <section className="history">
-        <p>History</p>
-        <Card className="history">
-        <header className="card-header">
-                                <h4>{getDayAndDate(getLatestDateHistory.date)}</h4>
-                                {carryOverUnfinished ? <p>Completed tasks</p> : <p>{completedTasks}/{totalTasks} done</p>}
-                                
-                            </header>
-                            <hr className="card-hr"/>
-                            <section className="list-card">
-                                {
-                                getLatestDateHistory.tasks.length && getLatestDateHistory.tasks.map(task=>(
-                                        <ul key={task.id}>
-                                            <li className="task"><span>{task.text}</span>
-                                                {/* <span>{!task.completed ? 'Pending' : getOnlyTime(task.createdAt)}</span> */}
-                                            </li>
-                                        </ul>
-                                ))
-                            }
-                            </section>
-    </Card>
-    </section>
-}
-    {/* <div className="settings">
-    <p>Settings</p>
-    <Card>
+        <section className="history-section">
+            <p>History</p>
+            <Card className="history-card">
+            <header className="card-header">
+                                    <h4>{getDayAndDate(getLatestDateHistory.date)}</h4>
+                                    {carryOverUnfinished ? <p>Completed tasks</p> : <p>{completedTasks}/{totalTasks} done</p>}
+                                    
+                                </header>
+                                <hr className="card-hr"/>
+                                <section className="list-card">
+                                    {
+                                    getLatestDateHistory.tasks.length && getLatestDateHistory.tasks.map(task=>(
+                                            <ul key={task.id}>
+                                                <li className="task"><span>{task.text}</span>
+                                                    {/* <span>{!task.completed ? 'Pending' : getOnlyTime(task.createdAt)}</span> */}
+                                                </li>
+                                            </ul>
+                                    ))
+                                }
+                                </section>
+        </Card>
+        </section>
+    
+    }
+        {/* <div className="settings">
+        <p>Settings</p>
+        <Card>
 
-    </Card>
-    </div> */}
-
+        </Card>
+        </div> */}
+        </aside>
+    </div>
     </main>
         
     <footer className="footer-navigation">
