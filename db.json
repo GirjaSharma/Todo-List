@@ -31,42 +31,42 @@
     {
       "id": "945828ca-eb7c-469a-82be-1b447dc52dd8",
       "text": "Integrate REST API",
-      "completed": false,
+      "completed": true,
       "createdAt": "3/30/2026, 2:20:13 PM",
       "date": "2026-03-31"
     },
     {
       "id": "8accca5f-c4be-45c9-bda8-1604184648cd",
       "text": "Prepare frontend mock interviews",
-      "completed": false,
+      "completed": true,
       "createdAt": "3/31/2026, 2:22:56 PM",
       "date": "2026-03-31"
     },
     {
       "id": "3f325ee6-392f-48e7-a9ab-902d5eea038e",
       "text": "do thorough testing",
-      "completed": false,
+      "completed": true,
       "createdAt": "3/31/2026, 2:29:29 PM",
       "date": "2026-03-31"
     },
     {
       "id": "f0f37caa-8863-4e23-97d4-69a82f1dac44",
       "text": "Deploy the app",
-      "completed": false,
+      "completed": true,
       "createdAt": "4/1/2026, 1:56:47 PM",
       "date": "2026-04-01"
     },
     {
       "id": "a82a726c-2ad3-466b-8238-43e4611562c0",
       "text": "Finalize Resume",
-      "completed": false,
+      "completed": true,
       "createdAt": "4/1/2026, 1:57:15 PM",
       "date": "2026-04-01"
     },
     {
       "id": "bfba00f5-c392-4ed6-9956-54a0a3c719dc",
       "text": "fix the loading issue and css issues",
-      "completed": false,
+      "completed": true,
       "createdAt": "4/4/2026, 3:02:30 PM",
       "date": "2026-04-04"
     }
