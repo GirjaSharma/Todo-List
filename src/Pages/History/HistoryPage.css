@@ -71,9 +71,3 @@ text-align: right;
     text-align: center;
     /* margin-top: 2rem; */
 }
-
-@media screen and (min-width: 768px){
-   .tablet-nav{
-    /* align-items: center */
-   }
-}

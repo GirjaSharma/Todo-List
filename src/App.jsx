@@ -84,17 +84,15 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify({
     state.currentDate, state.carryOverUnfinished]);
 
 
-const handleAddBtn=async(e)=>{
-    e.preventDefault();
+const handleAddBtn=async(text)=>{
     const now=getNow()
-    if(!state.task.trim())return ;
 
     const newTaskData = {
       id:generateId(),
-        text: state.task.trim(),
+        text,
         completed: false,
         createdAt: formatTime(now),
-        date: getDayKey(now)
+        date: state.currentDate
     }
 
     try{
@@ -157,9 +155,9 @@ const handleRemoveIcon =async(id)=>{
     }
     
 
-    const handleTaskChange=(newValue)=>{
-      dispatch({type: ACTION_TYPES.SET_TASK_INPUT, payload: newValue})
-    }
+    // const handleTaskChange=(newValue)=>{
+    //   dispatch({type: ACTION_TYPES.SET_TASK_INPUT, payload: newValue})
+    // }
 
     const handleEditingTextChange=(newValue)=>{
       dispatch({type: ACTION_TYPES.SET_EDITING_TEXT, payload: newValue})
@@ -205,7 +203,7 @@ return <p>{error}</p>
       editId={state.editId}
               task={state.task} onAddTask={handleAddBtn} 
               message={message}
-                    onTaskChange={handleTaskChange} 
+                    // onTaskChange={handleTaskChange} 
                     isEditing={isEditing} 
                     onCancelTask={handleCancelBtn} 
                     onUpdateTask={handleUpdateBtn}  

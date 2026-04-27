@@ -107,15 +107,15 @@ return{
 }
 }
 
-case ACTION_TYPES.SET_TASK_INPUT:{
+// case ACTION_TYPES.SET_TASK_INPUT:{
     
-        state.task= action.payload;
-        return{
-            ...state,
-            task: state.task
-        }
+//         state.task= action.payload;
+//         return{
+//             ...state,
+//             task: state.task
+//         }
     
-}
+// }
 
 case ACTION_TYPES.START_NEW_DAY:{
      const completedTasks =state.taskList.filter(task => task.completed);

@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import './TodoItem.css' ;
 
-export const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange,  onCancelTask, editingText
+const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange,  onCancelTask, editingText
            , onUpdateTask, editId, onEditingTextChange })=>{
 
 
@@ -42,8 +42,6 @@ export const TodoItem=({onChange,task, onEdit, onDelete, isEditing, onTaskChange
                     handleFocus()
             
                   }
-
-   
 return (
     <div className="taskContainer">
          {isEditingThisTask ? (<div className="edit-text-container">
@@ -84,3 +82,5 @@ return (
         </div>
 )
 }
+
+export default memo(TodoItem)

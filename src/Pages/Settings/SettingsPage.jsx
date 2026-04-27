@@ -6,10 +6,8 @@ import './SettingsPage.css';
 import {useTheme} from '../../hooks/useTheme.js';
 
 const SettingsPage =({carryOverUnfinished,handleCarryOverToggle,
-    // darkTheme, handleThemeSwitch
 })=>{
     const {theme, toggleTheme} = useTheme();
-
     return (
          <>
         <main className="settings-main-container">

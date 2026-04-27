@@ -1,5 +1,5 @@
 
-import {TodoItem} from '../TodoItem/TodoItem';
+import TodoItem from '../TodoItem/TodoItem';
 import './TodoList.css' 
 
 

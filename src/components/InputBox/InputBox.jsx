@@ -1,33 +1,41 @@
-import { useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import './InputBox.css';
 import { VscAdd } from "react-icons/vsc";
 import {getDayKey} from '../../utils/dateUtils'
 
 export const InputBox =({task, onAddTask, onTaskChange, currentDate})=>{
 
-    const inputRef = useRef(null)
+    const inputRef = useRef(null);
+
+    const [inputValue, setInputValue]= useState("");
+
+    const handleSubmit=()=>{
+        const trimmed= inputValue.trim();
+
+        if(!trimmed) return;
+
+        onAddTask(trimmed);
+        setInputValue("")
+    }
 
     const handleKeyDown=(e)=>{
         if(e.key === 'Enter'){
             e.preventDefault();
             
-                 onAddTask(e)
+                 handleSubmit();
         }
     }
 
     const handleFocus=()=>{
         requestAnimationFrame(() => inputRef.current?.focus());
       }
-    
-
-      const handlePrimaryClick=(e)=>{
-        onAddTask(e);
+      const handlePrimaryClick=()=>{
+        handleSubmit();
         handleFocus()
 
       }
 
-      const isCurrentDate = getDayKey(new Date()) !== currentDate
-
+      const isCurrentDate = getDayKey(new Date()) !== currentDate;
     return (
 
         <div className='inputRow'>
@@ -35,8 +43,8 @@ export const InputBox =({task, onAddTask, onTaskChange, currentDate})=>{
         ref={inputRef} 
         type="text" 
         placeholder="Add a task"
-        value={task} 
-        onChange={e=> onTaskChange(e.target.value)}
+        value={inputValue} 
+        onChange={e=> setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         />
         

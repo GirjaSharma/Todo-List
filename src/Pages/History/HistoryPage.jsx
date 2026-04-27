@@ -1,3 +1,4 @@
+import {useMemo} from 'react';
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Card } from "../../components/Card/Card";
 import './HistoryPage.css'
@@ -6,12 +7,10 @@ import {getGroupedHistory} from '../../utils/historyUtils';
 
 
 const History =({taskList, currentDate, carryOverUnfinished})=>{
-    const historyTasks =taskList.filter(task=> task.date !== currentDate);
-
+    const historyTasks =useMemo(() => {
+        return taskList?.filter(task=> task.date !== currentDate) ?? []
+    },[taskList, currentDate])
       const getTasks= getGroupedHistory(historyTasks)
-
-   
-
     return (
         <>
         <main className="history-main-container">

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useMemo} from 'react';
 import { InputBox } from "../../components/InputBox/InputBox";
 import { TodoList } from "../../components/TodoList/TodoList";
 import { VscAdd } from "react-icons/vsc";
@@ -13,10 +13,11 @@ import {getGroupedHistory} from '../../utils/historyUtils';
 const TodayPage =(
     {task,onAddTask,onTaskChange,isEditing,onCancelTask,onUpdateTask, taskList, onDelete, onEdit, onCheckboxChange, onStartNewDay, currentDate, message,carryOverUnfinished, editingText, editId, onEditingTextChange}
 )=>{
-    const todaysTask= taskList?.filter(task => (
-        task.date === currentDate
-    )
-    );
+    
+       const todaysTask= useMemo(() => {
+               return taskList?.filter(task => task.date === currentDate) ?? []
+           },[taskList, currentDate])
+
     const historyTasks= taskList?.filter(task => task.date !== currentDate);
 
     const historyData= getGroupedHistory(historyTasks)
@@ -44,7 +45,7 @@ return (
         <section className="today-content">
             <InputBox 
                 task={task} onAddTask={onAddTask} 
-                onTaskChange={onTaskChange} 
+                // onTaskChange={onTaskChange} 
                 isEditing={isEditing} 
                 currentDate={currentDate}
                 
@@ -62,7 +63,7 @@ return (
             onEdit={onEdit}
             onCheckboxChange={onCheckboxChange}
             isEditing={isEditing}
-            onTaskChange={onTaskChange}
+            // onTaskChange={onTaskChange}
             onCancelTask={onCancelTask} 
                 onUpdateTask={onUpdateTask} 
                 editId={editId}
